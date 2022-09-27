@@ -1,7 +1,17 @@
 # Some LaTeX templates
 Some LaTeX templates to mimick the MS W*rd templates for some project/grant submissions (mostly French)
 
-Contains:
 
-## ANR: final report (2019 version)
+**As usual and obviously, these templates are distributed in the hope that they will be useful, but WITHOUT ANY WARRANTY.**
+
+So far, this repository contains the following (old) templates:
+
+## `ANR-2019-end-report`
+ANR: final report (2019 version)
+
+## `ANR-2019-submission-phase2`
+ANR: full project proposal (phase 2) report (2019 version)
+
+
+
 

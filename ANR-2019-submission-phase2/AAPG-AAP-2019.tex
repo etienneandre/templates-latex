@@ -1,0 +1,584 @@
+% !Mode:: "TeX:UTF-8"
+
+% NOTE: template made by Étienne André (last modification: 2019/08/01)
+% License: creative-commons cc-by-sa
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNCOMMENT THIS LIGNE FOR VERSION WITH COMMENTS
+\def \VersionWithComments{}
+% UNCOMMENT THIS LIGNE FOR DRAFT VERSION
+%\def \DraftVersion{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\VersionWithComments
+	\def \DraftVersion{}
+\fi
+
+
+\documentclass[a4paper,11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % francais,
+
+\usepackage{graphicx}
+
+\usepackage[svgnames,table]{xcolor}
+
+\ifdefined\VersionWithComments
+	\usepackage[showframe]{geometry}
+\else
+	\usepackage{geometry}
+\fi
+\geometry{left=2cm,right=2cm,top=1cm,bottom=2cm,headheight=5pt,includehead,includefoot}
+
+
+\usepackage{multirow}
+
+\usepackage{subcaption}
+
+\usepackage{eurosym}
+
+\usepackage{lscape}
+
+\usepackage{lastpage}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Watermarking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage{draftwatermark}
+	\SetWatermarkText{draft}
+	\SetWatermarkScale{13}
+	\SetWatermarkColor[gray]{0.85}
+\fi
+% END Watermarking
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DYNAMIC LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[svgnames,table]{xcolor}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{darkgreen}{rgb}{0, 0.5, 0}
+\definecolor{darkpurple}{rgb}{0.7, 0, 0.7}
+\definecolor{darkblue}{rgb}{0, 0, 0.7}
+
+\usepackage[
+		colorlinks=true,
+	\ifdefined \VersionWithComments
+		pagebackref=true,
+	\fi
+		citecolor=darkgreen,
+		linkcolor=darkblue,
+		urlcolor=darkpurple,
+	]{hyperref}
+
+\usepackage[capitalise,english,nameinlink]{cleveref} % load after algorithm2e and hyperref
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CURRENCIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\kEUR}{k\,\euro{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STYLE ANR 2019 (par Benoît Delahaye, Étienne André et al.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{ultramarinedark}{RGB}{34,57,98}
+
+% FOR DANGER SYMBOL
+\newcommand*{\TakeFourierOrnament}[1]{{%
+\fontencoding{U}\fontfamily{futs}\selectfont\char#1}}
+\newcommand*{\danger}{\TakeFourierOrnament{66}}
+
+
+\usepackage{sectsty}
+
+\definecolor{CouleurTitreBoite}{RGB}{49, 132, 155}
+\definecolor{HeaderTable}{RGB}{182, 221, 232}
+
+\definecolor{ANRmarine}{RGB}{46,116,181}
+\sectionfont{\color{ANRmarine}}
+\subsectionfont{\color{ANRmarine}}
+\usepackage[labelfont={color=ANRmarine,bf}]{caption}
+
+
+\paragraphfont{\color{blue}}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\alph{subsection}}
+
+\newcommand{\subtask}[1]{%
+    \smallskip\noindent
+    \textbf{#1:}
+}
+
+
+% EN-TÊTE ET PIED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+
+\newcolumntype{a}{>{\columncolor{HeaderTable}}l}
+\newcolumntype{b}{>{\columncolor{HeaderTable}}X}
+
+\fancypagestyle{ANR}{
+\setlength{\headheight}{42pt}
+\lhead{}
+\rhead{}
+\chead{\begin{tabularx}{\linewidth}{a!{\color{white}\vrule}b!{\color{white}\vrule}b!{\color{white}\vrule}a}%
+            \textcolor{CouleurTitreBoite}{\textbf{AAPG2019}}& \multicolumn{2}{a!{\color{white}\vrule}}{\textbf{XXXX}}& XXXX \\ %
+            \arrayrulecolor{white}\hline
+            Coordinated by:& YOURNAME & XXXX months &  XXXX \kEUR{}\\ 
+            \arrayrulecolor{white}\hline
+            %\multicolumn{4}{a}{Axe 5.1: Fondements du numérique: informatique, automatique, traitement du signal}%
+            \multicolumn{4}{a}{CE 25 } % - Réseaux de communication multi-usages, infrastructures de hautes performances, Sciences et technologies logicielles
+       \end{tabularx}}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+}
+
+
+\newcommand\bhline{\noalign{\hrule height 2pt}}
+
+\fancypagestyle{Empty}{
+\setlength{\headheight}{8pt} 
+\lhead{}
+\rhead{}
+\chead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+}
+
+\pagestyle{ANR}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MORE STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rowHeader}{\rowcolor{HeaderTable}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMENTS MACROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\VersionWithComments
+	\usepackage[colorinlistoftodos,textsize=footnotesize]{todonotes}
+\else
+	\usepackage[disable]{todonotes}
+\fi
+\newcommand{\gennote}[3]{\todo[linecolor=#2,backgroundcolor=#2!25,bordercolor=#2]{#3: #1}}
+\newcommand{\dl}[1]{{\gennote{#1}{purple}{Didier}}}
+\newcommand{\ea}[1]{\gennote{#1}{blue}{Étienne}}
+\newcommand{\reviewer}[2]{{\gennote{``#2''}{purple}{Reviewer #1}}}
+
+% Sometimes, we just need the old-style TODO!
+\ifdefined \VersionWithComments
+	\newcommand{\todoinline}[1]{\mbox{}{\color{red}{\textbf{TODO}\ifx#1\\\else:\ \fi #1}}} % here, ``\\'' stands for ``empty''
+\else
+	\newcommand{\todoinline}[1]{}
+\fi
+
+\usepackage{verbatim} % for 'comment'
+
+%\newcommand{\instructions}[1]{{\gennote{\bfseries #1}{red}{Instructions}}}
+
+\ifdefined \VersionWithComments
+	\newcommand{\instructions}[1]{{\color{black!60}{[\textbf{Instructions}: \em #1]}}}
+\else
+	\newcommand{\instructions}[1]{}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I.E. / E.G. / W.R.T.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Helps to spot the places where macros are NOT used
+\ifdefined \VersionWithComments
+ 	\definecolor{colorok}{RGB}{80,80,150}
+\else
+	\definecolor{colorok}{RGB}{0,0,0}
+\fi
+
+\newcommand{\eg}{\textcolor{colorok}{e.\,g.,}}
+\newcommand{\ie}{\textcolor{colorok}{i.\,e.,}}
+\newcommand{\viz}{\textcolor{colorok}{viz.,}}
+\newcommand{\wrt}{\textcolor{colorok}{w.r.t.}}
+
+
+
+
+\title{Your project}
+\author{Your name}
+\date{\today{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{ANR}
+
+
+\ifdefined\DraftVersion
+
+\begin{center}
+	\textcolor{red}{\textbf{This is a DRAFT version (\today{})}}
+\end{center}
+	
+\fi
+
+\todo{This is the version with comments.
+	To disable comments, comment out line~6 in the \LaTeX{} source.}
+
+\ea{Hello, thanks for using my \LaTeX{} style!}
+
+\begin{center}
+{\huge\bf long title (acronym)}
+\end{center}
+
+
+\instructions{Please use an easily \textbf{readable} document layout (A4 pages, Calibri 11 or equivalent, single spaced, 2cm margins, numbered pages ; for figure and table, minimum Calibri 9 or equivalent)
+
+The project description cannot exceed a \textbf{20-page limit} (including Gantt chart, overview of the requested funds and their scientific justification, and bibliography) and must be \textbf{submitted in a PDF format}.
+
+Proposals must fullfil the three main evaluation criteria: ``Quality and scientific aims'', ``Organisation and implementation of the project'', ``Impact and benefits of the project''. Applicants are advised to consult the document AAPG2019 (\url{http://www.agence-nationale-recherche.fr/fileadmin/aap/2019/aapg-anr-2019-en-2.pdf}) for further information about the different sub-criteria related to the chosen funding instrument. }
+
+
+\ifdefined\VersionWithComments
+	\setcounter{tocdepth}{2}
+	\tableofcontents{}
+\fi
+
+
+\noindent
+{\bf \Large Summary table of persons involved in the project:}\\
+
+{
+\noindent
+\setlength{\tabcolsep}{2pt} % . The default value is 6pt.
+\begin{tabularx}{\linewidth}{|m{.08\linewidth}|m{.12\linewidth}|m{.13\linewidth}|m{.1\linewidth}|m{.12\linewidth}|X|m{.12\linewidth}|}\hline
+\rowHeader{}{\bf Country} & {\bf University} & {\bf Last name} & {\bf First Name} & {\bf Current Position} & {\bf Role in the project} & {\bf Involvement (person.month) } \\
+\hline
+\rowcolor{yellow}partner 1 & & & & & & \\ 
+\hline
+\rowcolor{yellow!20}& & & & & & \\
+\hline
+& & & & & & \\
+\hline
+
+\end{tabularx}
+}
+
+\vspace{2cm}
+
+\noindent
+{\bf \Large Any changes made in the full proposal compared to the pre-proposal}\\
+
+\instructions{\textbf{Specify and justify} any significant changes made since the drafting of the pre-proposal, in particular changes in requested grant amount, scientific and technological objectives and composition of the consortium.\\
+\textbf{Eligibility criteria according to compliance with pre-proposal}: The full proposal must describe the same project as that described in the pre-proposal. The funding instrument and the scientific coordinator must be the same as for the pre-proposal. The relevance of other discrepancies will be assessed by panel members based on the explanation given by the applicants when submitting the full proposal. If there is a significant deviation, the proposal is declared ineligible and cannot receive ANR funding. (Cf. AAPG 2019 Guide (\url{http://www.agence-nationale-recherche.fr/fileadmin/aap/2019/aapg-anr-2019-Guide-en.pdf}), section B.5.2.)}
+
+
+\instructions{Les déposants sont invités à présenter des projets qui justifient des financements de l’ANR pour des montants indicatifs maximum de 280 k euro, y compris pour des projets de recherche fondamentale.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Proposal's context, positioning and objective(s)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{This paragraph refers to the evaluation criteria ``Quality and scientific aim''}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Objectives and research hypothesis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Present the objectives and the research hypothesis; present the scientific and technical barriers to be lifted; present the expected results; if applicable describe any final products developed.}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Position of the project as it relates to the state of the art}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\instructions{Emphasise the originality and the novelty of the proposal - concerning its objectives and its methodology --- and its position in relation to the state of the art; show the contributions of the project partners to this state of the art; present any preliminary results. In the case of a project proposal following up on previous project(s) already funded by ANR or by another body, provide a summary of the results achieved and clearly describe the new issues raised and the new objectives set out in the light of the earlier project.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Methodology and risk management}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Describe the methodology and its relevance to reach the objectives, detail the scientific risks and fall-back solutions envisaged.
+
+Set out the scientific programme and justify the work programme's task breakdown with regard to the objectives being pursued.
+\begin{itemize}
+	\item For each task, describe the objectives, the work programme, deliverables, partners' contributions, methods and technical decisions, risks, and fall-back solutions. Illustrate with a Gantt chart.
+	\item For research projects dealing with subjects that may harm humans, animals, or the environment, discuss the ethical aspects of the project.
+	\item If applicable, indicate the conditions of access to a research infrastructure (IR) or a very large research infrastructure (TGIR)
+\end{itemize}
+\danger{}
+\textbf{Concerning PRCI proposal}, it is mandatory for applicants to provide the scientific contribution of the French and foreign teams.}
+
+
+
+
+
+
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+\subsubsection{Gantt diagram}
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+
+
+The following Gantt diagram is organized in 6 semesters (S1--S6) over the 3 years of the project.
+Task~0 corresponds to the organization task.
+
+\begin{center}
+
+	\begin{tabular}{| c | c | c | *{6}{c} |}
+		\hline
+		\rowcolor{HeaderTable}
+			\textbf{Task}
+			& \textbf{Name}
+			& \textbf{Confidence}
+			& \textbf{S1}
+			& \textbf{S2}
+			& \textbf{S3}
+			& \textbf{S4}
+			& \textbf{S5}
+			& \textbf{S6}
+% 			& \textbf{S7}
+% 			& \textbf{S8}
+		\\
+		\hline
+			0 & xxx & -- & \cellcolor{red!50} & \cellcolor{red!50}
+				& \cellcolor{red!50} & \cellcolor{red!50}
+				& \cellcolor{red!50} & \cellcolor{red!50}
+% 				& \cellcolor{red!50} & \cellcolor{red!50}
+\\
+		\hline
+			1 & xxxx & {}
+				& \cellcolor{green!50} & \cellcolor{green!50}
+				& \cellcolor{green!50} &
+% 				& &
+				& & \\
+		\hline
+			2 & xxxx & {}
+				& & \cellcolor{orange!50} 
+				& \cellcolor{orange!50} & \cellcolor{orange!50}
+				& \cellcolor{orange!50} & 
+% 				& &
+\\
+		\hline
+			3 & xxxx & {}
+				& & 
+				&\cellcolor{blue!50} & \cellcolor{blue!50}
+				& \cellcolor{blue!50} & \cellcolor{blue!50}
+			\\
+		\hline
+\end{tabular}
+
+\end{center}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Organisation and implementation of the project}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{This paragraph refers to the evaluation criteria ``Organisation and implementation of the project''}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Scientific coordinator and its consortium / its team}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\paragraph{Scientific coordinators}
+
+\instructions{\textbf{In the case of a collaborative research project (PRC, PRCE, PRCI), }
+\begin{itemize}
+	\item Present the scientific coordinator, his/her experience as a scientific coordinator or a project manager, his/her experience in the scientific field (including the foreign scientific coordinator in a PRCI proposal) 
+	\item Present the consortium and its complementarity: demonstrate the quality and complementary nature of the consortium specifying the identity of the scientists involved and their institution and all other items providing a framework for judging the quality and complementarity of partners and consortia
+	\item Complete the following table including information concerning the involvement of the scientific coordinator and partner’s scientific leader in regional, national and international on-going projects.
+\end{itemize}
+ }
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Implemented and requested resources to reach the objectives}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\instructions{Describe the means --- those previously available and those requested --- to achieve the objectives.
+\begin{itemize}
+	\item \textbf{Scientific and technical justification of the requested means} --- per item of expenditure and by partner ---, \textbf{linked to the objectives of the proposal}. 
+Summarise the requested funds in the table below in accordance with the information filled out on the website and with ANR’s grant allocation rules (règlement relatif aux modalités d’attribution des aides de l’ANR (\url{http://www.agence-nationale-recherche.fr/RF}) ).
+	\item Description of the context in terms of human and financial resources available thanks to previous or ongoing projects.
+	\item If a partner is relying on its own funds, justify the available means to realise its tasks.
+\end{itemize}
+
+\danger{} The sub-criteria ``Appropriateness of implemented and requested resources to the project’s objectives'' is as important as the other sub-criteria. \textbf{The reviewers will wait for a high level of detail in the calculation and its scientific justification}. 
+
+Examples: What kind of contract for the temporary staff, duration, for which task? What kind of instrument, for which task, why buying instead of renting? What kind of mission (conferences, meeting, data collection, etc.), national / international, for how many people, how much time/how many times?
+
+\danger{} \textbf{Concerning PRCI proposals}, it is mandatory for applicants to provide the following information in the scientific document 
+\begin{itemize}
+	\item Presentation of the foreign scientific coordinator and foreign partners; 
+	\item Financial data, broken down by item of each expenditure by foreign partners.
+\end{itemize}
+}
+
+
+
+
+
+
+\section*{Partner 1: XXXXX}
+
+\subsection*{Staff expenses}
+
+\instructions{Costs linked to the researchers, engineers, technicians and other scientific staff affected to the project; in the case of a JCJC project: cost of partially releasing the young researcher from teaching duties. \textbf{Justification in relation to the scientific objectives.}}
+
+
+\subsection*{Instruments and material costs}
+
+\instructions{Acquisition, depreciation or rental costs of instruments or material and the scientific consumables specifically used for the achievement of the project. \textbf{Justification in relation to the scientific objectives}.}
+
+
+
+\subsection*{Building and ground costs}
+
+\instructions{Rental costs of new premises and lands or the fitting of premises or pre-existing lands for the use of the project. \textbf{Justification in relation to the scientific objectives.}}
+
+
+\subsection*{Outsourcing / subcontracting}
+
+\instructions{Acquisition costs of (1) Licences, patent, brand, software, database, copyrights etc.; (2) Subcontracting costs; for the achievement of the project. \textbf{Justification in relation to the scientific objectives.}}
+
+
+
+\subsection*{General and administrative costs \& other operating expenses}
+
+\instructions{Missions expenses and travel costs of the permanent and temporary staff affected to the project; conferences organisation costs. \textbf{Justification in relation to the scientific objectives.}}
+
+
+
+
+\section*{Partner 2: XXXXX}
+
+\subsection*{Staff expenses}
+
+\instructions{Costs linked to the researchers, engineers, technicians and other scientific staff affected to the project; in the case of a JCJC project: cost of partially releasing the young researcher from teaching duties. \textbf{Justification in relation to the scientific objectives.}}
+
+
+\subsection*{Instruments and material costs}
+
+\instructions{Acquisition, depreciation or rental costs of instruments or material and the scientific consumables specifically used for the achievement of the project. \textbf{Justification in relation to the scientific objectives}.}
+
+
+
+\subsection*{Building and ground costs}
+
+\instructions{Rental costs of new premises and lands or the fitting of premises or pre-existing lands for the use of the project. \textbf{Justification in relation to the scientific objectives.}}
+
+
+\subsection*{Outsourcing / subcontracting}
+
+\instructions{Acquisition costs of (1) Licences, patent, brand, software, database, copyrights etc.; (2) Subcontracting costs; for the achievement of the project. \textbf{Justification in relation to the scientific objectives.}}
+
+
+
+\subsection*{General and administrative costs \& other operating expenses}
+
+\instructions{Missions expenses and travel costs of the permanent and temporary staff affected to the project; conferences organisation costs. \textbf{Justification in relation to the scientific objectives.}}
+
+
+
+
+
+
+\newpage
+\pagestyle{Empty}
+\begin{landscape}
+
+\renewcommand\tabularxcolumn[1]{m{#1}}% for vertical centering text in X column
+
+\noindent
+{\bf \Large Requested means by item of expenditure and by partner}\\[2ex]
+\begin{tabularx}{\linewidth}{!{\vrule width 2pt} m{.25\linewidth} | m{.15\linewidth} !{\vrule width 2pt} m{.12\linewidth} !{\vrule width 2pt} m{.12\linewidth} !{\vrule width 2pt} m{.12\linewidth} !{\vrule width 2pt} X !{\vrule width 2pt}}\bhline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{\begin{minipage}[c][6ex]{\linewidth}\phantom{blank cell}\end{minipage}}& {\bf \large xxxx} & {\bf \large xxx} & {\bf \large xxxx} & {\bf \large xxxx} \\\bhline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{Staff expenses} & xxx\,\kEUR{} & xxx\,\kEUR{} & & \\\hline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{Instruments and material costs (including the scientific consumables)} & &  & & \\\hline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{Building and ground costs} & 0\,\kEUR{} & 0\,\kEUR{} & 0\,\kEUR{} &  0\,\kEUR{} \\\hline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{Outsourcing / subcontracting} & 0\,\kEUR{} & 0\,\kEUR{} & 0\,\kEUR{} & 0\,\kEUR{} \\\hline
+\multirow{2}{*}{\begin{minipage}[c]{\linewidth}General and administrative costs \& other operating expenses\end{minipage}} & Travel costs & xxx\,\kEUR{} & xxxx\,\kEUR{} & &  \\\cline{2-6}
+& Administrative management \& structure costs\footnote{ For marginal cost beneficiaries, these costs will be a package of 8\,\% of the eligible expenses. For full cost beneficiaries, these costs will be a sum of max. 68\,\% of staff expenses and max. 7\,\% of other expenses.} & & & & \\\hline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{{\bf Sub-total}} & \cellcolor{yellow} & \cellcolor{yellow} & & \\\bhline
+\multicolumn{2}{!{\vrule width 2pt} l !{\vrule width 2pt}}{{\bf Requested Funding}} & \multicolumn{4}{r !{\vrule width 2pt}}{\bf xxx\,\kEUR{}}    \\\bhline
+\end{tabularx}
+
+\bigskip{}
+
+\end{landscape}
+\pagestyle{ANR}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Impact and benefits of the project}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{\textbf{This paragraph refers to the evaluation criteria ``Impact and benefits of the project''}
+
+\textbf{For every funding instruments:}\\
+Describe in what scientific fields and eventually economic, social or cultural field project results may have an impact, in the short, medium or long term.
+
+
+\medskip
+
+\textbf{For a PRCI project, }
+\begin{itemize}
+ \item Demonstrate how the scientific contributions of partners from each country are balanced and complementary, and how cooperation between these French and foreign teams will add value or deliver benefits for France.
+\end{itemize}
+
+% \medskip
+% 
+% \textbf{For a PRCE project, }
+% \begin{itemize}
+%  \item Describe actions to transfer technology and innovation to the social and economic world.
+% \end{itemize}
+
+\medskip
+
+\textbf{For a PRC or a JCJC project,}
+\begin{itemize}
+ \item Describe how results will be disseminated and exploited, including potential initiatives to promote scientific culture
+\end{itemize}
+
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{References related to the project}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{This paragraph refers to the evaluation criteria « ``Quality and scientific aim''}
+
+List the bibliographical references used for the proposal.
+
+The bibliography must be included in the 20-page limit. The bibliography may include preprints that are yet to be published in a peer-reviewed journal, especially those referencing preliminary data. If available, please indicate the ``open access'' link to improve accessibility for the reviewers. Highlight the references for which one or more of the authors are involved in the project. 
+}
+
+
+
+\end{document}
