@@ -1,0 +1,348 @@
+% Author: Étienne André
+% Date  : 2021/02
+% Distributed with the use that it will be useful mais sans absolument aucune garantie !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNCOMMENT THIS LIGNE FOR VERSION WITH COMMENTS
+ \def \VersionWithComments{}
+% UNCOMMENT THIS LIGNE FOR DRAFT VERSION
+%  \def \DraftVersion{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\VersionWithComments
+	\def \DraftVersion{}
+\fi
+
+
+\documentclass[a4paper,10pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,francais]{babel}
+
+\usepackage{times}
+
+\usepackage{graphicx}
+
+\usepackage{soul} % texte barré
+
+\ifdefined\DraftVersion
+	\usepackage[showframe]{geometry}
+\else
+	\usepackage{geometry}
+\fi
+\geometry{a4paper, top=1cm, left=1cm, right=1cm, bottom=1cm, nohead} % includehead, includefoot
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Watermarking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage{draftwatermark}
+	\SetWatermarkText{draft}
+	\SetWatermarkScale{4}
+	\SetWatermarkColor[gray]{0.85}
+\fi
+% END Watermarking
+
+
+ \usepackage[svgnames,table]{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DYNAMIC LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex, colorlinks=true]{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FORMATTING ACCORDING TO PEDR STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{sectsty}
+\usepackage{titlesec}
+
+
+\renewcommand{\thesection}{\Roman{section}.}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}
+
+
+
+
+
+
+
+% ICI, les césures particulières
+% \hyphenation{Imp-Ro}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMENTAIRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined \VersionWithComments
+	\newcommand{\instructionsSection}[1]{{\color{blue}[\textbf{Instructions section 27}: #1]}}
+\else
+	\newcommand{\instructionsSection}[1]{}
+\fi
+
+\newcommand{\instructions}[1]{\textcolor{black}{#1}}
+
+
+%opening
+\title{PEDR}
+\author{Étienne André}
+% \date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\VersionWithComments
+
+	\textcolor{red}{This is the version with comments.
+	To disable comments, comment out line~6 in the \LaTeX{} source.}
+	
+	\medskip
+	
+\fi
+
+\begin{center}
+	\Large
+	Dossier de demande d'attribution de la PEDR
+\end{center}
+
+\noindent
+\emph{Le modèle de ce dossier est unique pour l'ensemble des sections du CNU, CNU-Santé, CNAP et des différents corps. Le candidat doit en rédiger le contenu en fonction des critères et des recommandations publiés par sa section sur le site web CP-CNU.
+Le document sera converti en un fichier au format pdf \textbf{dont le poids n'excédera pas 5 Mo}.
+Ce fichier devra ensuite être téléversé par le candidat dans l'application ELARA-PEDR en complément des informations saisies dans les écrans d'enregistrement de la candidature. 
+}
+
+\smallskip
+
+\noindent
+\emph{\textbf{Sauf contre-indication de la section, la période de 4 années considérée ci-dessous se termine le 31 décembre 2020 et commence le 1\ier{} janvier 2017, ou plus tôt selon les congés (parental, maladie…) ou emploi à temps partiel détaillés dans la partie III.}}
+
+\instructionsSection{\textcolor{red}{\textbf{ …Mais pour la longueur du dossier, la section 27 du CNU recommande un dossier d'une dizaine de pages. }}}
+
+\smallskip
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\tableofcontents{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Identification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{tabular}{l l l l}
+	\textbf{M.}   \st{Mme} & Nom de famille : \textbf{André} & Nom d'usage : \textbf{André} & Prénom : \textbf{Étienne}\\
+	Date de naissance : & \textbf{un jour} & Grade : & \textbf{Professeur des universités}\\
+	Établissement d'affectation : & \textbf{Université de Lorraine} & Section CNU : \textbf{27} &  Unité de Recherche : \textbf{UMR 7503}
+
+\end{tabular}
+
+\instructionsSection{%
+	Fournir également ici les informations usuelles dans un CV : formation, diplômes, parcours professionnel, lieux d'exercice.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Activités exercées durant les 4 dernières années}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsSection{%
+\textbf{Il s'agit de la période allant du 1\ier{} janvier 2017 au 31 décembre 2020.}
+\\
+En préambule, exposer brièvement ici les thématiques de recherche. 
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Publications et production scientifique :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsSection{\emph{Fournir pour chaque publication, les informations factuelles précises (développer les acronymes, indiquer les n° des revues, n° des pages, dates et lieux des conférences, etc) ainsi que le taux de sélection.
+Parmi les publications, indiquer les cinq publications considérées comme majeures (en les hiérarchisant) et les situer dans leur contexte de recherche. Pour ces 5 publications, le candidat décrira sa contribution}
+
+\bigskip
+
+\textbf{Publications}\\
+Livres\\
+Chapitres de livres\\
+Articles de journaux internationaux avec comité de lecture\\
+Articles de conférences internationales avec comité de lecture\\
+Articles de workshops internationaux avec comité de lecture\\
+Articles de journaux nationaux avec comité de lecture\\
+Articles de conférences nationales avec comité de lecture\\
+Articles de workshops nationaux avec comité de lecture\\
+…\\
+\textbf{Développement logiciel}\\
+Dépôt auprès de l'APP (Agence pour la Protection des Programmes)\\
+Intégration dans des distributions (Linux, autres plates-formes, lignes de code)\\
+Diffusion \emph{via} un site (indiquer le nombre de téléchargements, la taille de la communauté d'utilisateurs, le nombre de lignes de code)\\
+Constitution de plate-forme de données (indiquer le nombre d'accès, la taille de la communauté d'utilisateurs).
+\\ Développement de composants intégrés dans des bibliothèques (Eclipse, …)\\
+Participation à des défis/compétitions internationales (indiquer le classement, le nombre de participants, etc)\\
+…\\
+\textbf{Transfert industriel , standardisation}\\
+Brevets,\\
+Transfert (donner pour chaque réalisation l'industriel qui l'utilise).\\
+W3C, IETF (Internet Engineering Task Force)\\
+Incubation de jeunes pousses\\
+}
+
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+\subsubsection{Publications}
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+
+
+
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+\subsubsection{Développement logiciel}
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+
+
+
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+\subsubsection{Transfert industriel, standardisation}
+%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Encadrement doctoral et scientifique :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsSection{
+\emph{Indiquer le \% en cas de co-encadrement et les lier avec la production scientifique ; préciser le type de financement et le devenir des doctorants.}
+
+\bigskip
+
+\underline{\textbf{Maîtres de conférences début de carrière}}\\
+Post-doc, stage de master 1 ou 2 à coloration scientifique, dans une équipe de recherche ou lié à une thématique de recherche menée par le candidat (opposé au stage en entreprise d'insertion professionnelle)
+
+\underline{\textbf{Pour tous}}\\
+Post-doc, stage de master 2 à coloration scientifique, dans une équipe de recherche (opposé au stage en entreprise d'insertion professionnelle)\\
+Encadrement ou co-encadrement doctoral
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diffusion des travaux (rayonnement et vulgarisation) :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsSection{
+\textbf{Jurys de thèse ou de HDR}\\
+Préciser le rôle (examinateur, président, rapporteur), le lieu…\\
+\textbf{Invitations}\\
+Articles ou communications invités (préciser) ; tutoriels (préciser)\\
+Invitations dans des universités, instituts ou instances d'évaluation à l'étranger\\
+\textbf{Animation}\\
+Organisation de séminaires, écoles jeunes chercheurs …\\
+Animation de groupes de travail de GDR, animation de GDR…\\
+Participation à des comités de programmes de conférences nationales, internationales\\
+Comités éditoriaux de revues nationales, internationales\\
+\textbf{Vulgarisation}\\
+Articles grand public, interviews, livres à vocation pédagogique, polycopiés diffusés et utilisés par la communauté, conférences, séminaires grand public, diffusion de la culture scientifique…\\
+\textbf{Diffusion logicielle (autre qu'en 1.)}\\
+Grand public, communauté scientifique de recherche, enseignement\\
+\textbf{Prix et Distinctions}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités scientifiques :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsSection{
+En matière de responsabilités il faudra bien distinguer celles qui relèvent de la visibilité scientifique de celles qui relèvent de l'administration de la politique scientifique. En particulier, dans le corps des professeurs, les dernières ne doivent ni ne peuvent, en aucun cas donner lieu à l'octroi de la prime sans résultats scientifiques de haut niveau pour le point 1. de leur dossier.
+
+\bigskip
+
+\textbf{\underline{Maîtres de conférences début de carrière}}\\
+\textbf{Scientifiques :}\\
+Participation à des contrats, responsabilités de lots, responsabilités locales de contrats de recherche, \\
+\textbf{Administration de la science :}\\
+Responsabilité de la logistique organisationnelle de congrès nationaux/internationaux\\
+Administration et animation de structures associatives scientifiques nationales/internationales
+
+\bigskip
+
+\textbf{\underline{Maître de conférences (classe normale, proches d'HDR ou HDR soutenue)}}\\
+\textbf{Scientifiques :}\\
+Participation à des contrats, responsabilités de lots, responsabilités locales de contrats de recherche… \\
+\textbf{Administration de la science :}\\
+Responsabilités recherche au sein de son établissement (conseil scientifique …), responsabilité de la logistique organisationnelle de congrès nationaux/internationaux\\
+Administration et animation de structures associatives scientifiques nationales/internationales
+
+\bigskip
+
+\textbf{\underline{Maîtres de conférences hors classe avec HDR, professeur de deuxième classe}}\\
+\textbf{Scientifiques}\\
+Participation à des contrats, responsabilités de lots, responsabilités locales de contrats de recherche, coordination de projets nationaux, participation à des projets européens/internationaux…\\
+Responsabilité d'équipes /groupes/axes de recherche…\\
+\textbf{Administration de la science :}\\
+Responsabilités recherche au sein de son établissement …\\
+Responsabilité de la logistique organisationnelle de congrès nationaux/internationaux\\
+Administration et animation de structures associatives scientifiques nationales/internationales
+
+\bigskip
+
+\textbf{\underline{Professeur de première classe}}\\
+\textbf{Scientifiques :}\\
+Participation à des contrats, responsabilités de lots, responsabilités locales de contrats de recherche, coordination de projets nationaux, participation à des projets européens/internationaux, coordination de projets européens, responsabilité d'équipes / groupes / axes de recherche.\\
+\textbf{Administration de la science :}\\
+Pilotage d'écoles jeunes chercheurs, direction d'écoles doctorales, responsabilités recherche au sein de son établissement, au niveau national, membre de comités (HCERES, ANR, européens), responsabilités au MENESR, direction de laboratoire…\\
+Administration et animation de structures associatives scientifiques nationales/internationales
+
+\bigskip
+
+\textbf{\underline{Professeur de classe exceptionnelle.}}\\
+\textbf{Scientifiques :}\\
+Participation à des contrats, responsabilités de lots, responsabilités locales de contrats de recherche, coordination de projets nationaux, participation à des projets européens/internationaux, coordination de projets européens, responsabilité d'équipes / groupes / axes de recherche.\\
+\textbf{Administration de la science :}\\
+Pilotage écoles jeunes chercheurs, direction d'écoles doctorales, responsabilités recherche au sein de son établissement, au niveau national, membre de comités (HCERES, ANR, européens), responsabilités au MENESR, direction de laboratoire…\\
+Administration et animation de structures associatives scientifiques nationales/internationales
+
+}
+
+
+Autres activités et responsabilités (pédagogiques, administratives, ou propres aux personnels HU, astronomes et astronomes-physiciens) :
+
+\instructionsSection{
+Responsabilités d'années, de filières, d'études, des stages, de la formation continue, de l'apprentissage… 
+
+Responsabilités/fonctions dans des instances locales ou nationales
+\begin{itemize}
+	\item Participation au fonctionnement d'organismes nationaux (ANR, CNU, CoNRS, CNRS, DGESIP, DGRI, HCERES, INRIA, etc : préciser)
+	\item Participation à des instances officielles d'établissements (préciser)
+	\item Autres : CNESER…
+\end{itemize}
+
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Informations significatives sur le déroulement de la carrière et les conditions d'exercice :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Ne mentionner que les informations importantes et significatives ainsi que tous les autres renseignements utiles pour apprécier l'activité scientifique des 4 dernières années ou toute situation particulière (mobilité géographique, thématique, bénéficiaire de l'obligation d'emploi, reconnaissance de la qualité de travailleur handicapé, délégation, décharge de cours….)}
+
+\instructionsSection{Par informations significatives, la section 27 du CNU entend que les collègues indiquent, en moins d'une demi-page leur éventuelle situation particulière (comme par exemple les situations mentionnées ci-dessus, ainsi que les congés maternité ou parentaux, les arrêts maladie de longue durée…), ce qui peut aussi intégrer des précisions sur les conditions d'exercice ou le contexte scientifique. Préciser les dates correspondantes.
+\\
+La teneur de cette section doit impérativement rester factuelle.}
+
+
+
+\end{document}
