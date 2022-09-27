@@ -1,0 +1,17 @@
+# For LaTeX
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.log
+*.nav
+*.out
+*.pdf
+*.run.xml
+*.snm
+*.spl
+*.synctex.gz
+*.toc
+*.vrb
+
+.kile
