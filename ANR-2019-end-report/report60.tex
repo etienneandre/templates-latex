@@ -1,0 +1,802 @@
+% !Mode:: "TeX:UTF-8"
+
+% NOTE: template made by Étienne André (last modification: July 2019)
+% License: creative-commons cc-by-sa
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNCOMMENT THIS LIGNE FOR VERSION WITH COMMENTS
+% \def \VersionWithComments{}
+% UNCOMMENT THIS LIGNE FOR VERSION WITH INSTRUCTIONS BY ANR
+\def \VersionWithInstructions{}
+% UNCOMMENT THIS LIGNE FOR DRAFT VERSION
+%\def \DraftVersion{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\VersionWithComments
+	\def \DraftVersion{}
+\fi
+
+
+\documentclass[a4paper,11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[english,french]{babel}
+
+\usepackage{graphicx}
+
+\usepackage[svgnames,table]{xcolor}
+
+\ifdefined\VersionWithComments
+	\usepackage[showframe]{geometry}
+\else
+	\usepackage{geometry}
+\fi
+\geometry{left=2cm,right=2cm,top=1cm,bottom=1.5cm,headheight=5pt,includehead,includefoot}
+
+
+\usepackage{multirow}
+
+\usepackage{lscape}
+
+\usepackage{lastpage}
+
+\usepackage{longtable}
+
+\usepackage{textcomp} % for \textdegree
+
+\usepackage{ulem} % pour \uline{}
+\normalem % to avoid that \emph{} becomes \uline{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Watermarking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage{draftwatermark}
+	\SetWatermarkText{draft}
+	\SetWatermarkScale{3}
+	\SetWatermarkColor[gray]{0.85}
+\fi
+% END Watermarking
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LINE NUMBERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage[pagewise]{lineno} % switch, modulo
+	\linenumbers
+	\renewcommand\linenumberfont{\normalfont\tiny\sffamily\color{gray}}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DYNAMIC LINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[svgnames,table]{xcolor}
+
+\usepackage[
+		colorlinks=true,
+		pagebackref=true,
+% 		citecolor=green,
+		linkcolor=ANRbleu,
+		urlcolor=blue,
+	]{hyperref}
+
+\usepackage[capitalise,english,nameinlink]{cleveref} % load after algorithm2e and hyperref
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STYLE ANR 2019 (by Étienne André)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{times}
+
+
+\usepackage{sectsty}
+
+\definecolor{ANRbleu}{RGB}{00,51,102}
+\definecolor{ANRvert}{RGB}{00,128,128}
+\definecolor{ANRgrispale}{RGB}{230,230,230}
+
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{}
+
+\sectionfont{\color{ANRbleu}}
+\subsectionfont{\color{ANRbleu}}
+\subsubsectionfont{\color{ANRbleu}}
+
+% Bleu + textbf
+\newcommand{\tableheader}[1]{\textbf{\textcolor{ANRbleu}{#1}}}
+
+% Pas de titre à la table des matières
+\renewcommand\contentsname{}
+
+
+% EN-TÊTE ET PIED
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+
+\fancypagestyle{ANR}{
+% \setlength{\headheight}{42pt}
+\lhead{}
+\rhead{}
+\chead{}
+\lfoot{\textcolor{black!50}{\footnotesize\emph{Référence du formulaire : ANR-FORM-090601-01-01}}}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+}
+
+
+\newcommand\bhline{\noalign{\hrule height 2pt}}
+
+% Remove top horizontal bar
+\renewcommand{\headrulewidth}{0pt}
+
+\pagestyle{ANR}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMENTS MACROS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{verbatim} % for 'comment'
+
+\ifdefined\VersionWithComments
+	\usepackage[colorinlistoftodos,textsize=footnotesize]{todonotes}
+\else
+	\usepackage[disable]{todonotes}
+\fi
+\newcommand{\gennote}[3]{\todo[linecolor=#2,backgroundcolor=#2!25,bordercolor=#2]{#3: #1}\xspace}
+\newcommand{\dl}[1]{{\gennote{#1}{purple}{Didier}}}
+\newcommand{\ea}[1]{\gennote{#1}{blue}{Étienne}}
+
+% Sometimes, we just need the old-style TODO!
+\ifdefined \VersionWithComments
+	\newcommand{\todoinline}[1]{\mbox{}{\color{red}{\textbf{TODO}\ifx#1\\\else:\ \fi #1}}} % here, ``\\'' stands for ``empty''
+\else
+	\newcommand{\todoinline}[1]{}
+\fi
+
+
+\ifdefined\VersionWithInstructions
+	\newcommand{\instructions}[1]{%
+		{%
+			% Remove paragraph indentation to look like ugly Word
+			\setlength{\parindent}{0cm}%
+			{\em\color{ANRvert}#1}%
+		}%
+	}
+\else
+	\newcommand{\instructions}[1]{}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I.E. / E.G. / W.R.T.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Helps to spot the places where macros are NOT used
+\ifdefined \VersionWithComments
+ 	\definecolor{colorok}{RGB}{80,80,150}
+\else
+	\definecolor{colorok}{RGB}{0,0,0}
+\fi
+
+\newcommand{\eg}{\textcolor{colorok}{e.\,g.,}}
+\newcommand{\ie}{\textcolor{colorok}{i.\,e.,}}
+\newcommand{\viz}{\textcolor{colorok}{viz.,}}
+\newcommand{\wrt}{\textcolor{colorok}{w.r.t.}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Project information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\projectName}{MYPROJECT}
+
+
+
+
+\title{\projectName{} final report}
+\author{Étienne André}
+\date{\today{}}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{ANR}
+
+
+\ifdefined\DraftVersion
+
+\begin{center}
+	\textcolor{red}{\textbf{This is a DRAFT version (\today{})}}
+\end{center}
+	
+\fi
+
+\todo{This is the version with comments.
+	To disable comments, comment out line~6 in the \LaTeX{} source.}
+	
+\ea{Hello, thanks for using my \LaTeX{} style!}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{
+\def\arraystretch{1.6}
+
+\noindent\begin{tabular}{| p{5cm} | p{8cm} | p{3cm} |}
+	\hline
+	\multirow{3}{*}{\includegraphics[width=5cm]{anr.png}} & \multirow{3}{*}{%
+		\begin{minipage}{8cm}
+			\centering
+			{\Huge\textcolor{ANRbleu}{\textbf{Compte-rendu de fin de projet}}}
+		\end{minipage}
+	} &  \\
+	\cline{3-3}
+	& & \\
+	\cline{3-3}
+	& & \\
+	\hline
+\end{tabular}
+
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent\fcolorbox{ANRbleu}{white}{
+\begin{minipage}{\textwidth}
+
+	\begin{center}
+		\color{ANRbleu}
+		
+		\bigskip
+		
+		{\Large\textbf{Projet ANR-AA-PPPP-000}}
+		
+		\bigskip
+		
+		{\Huge\textbf{Acronyme et/ou nom du projet}}
+
+		\bigskip
+		
+		{\Large Programme xxxxx 201x}
+	\end{center}
+
+
+
+\end{minipage}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{tocdepth}{2}
+\tableofcontents{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{
+\bigskip
+
+Ce document est à remplir par le coordinateur en collaboration avec les partenaires du projet. L'ensemble des partenaires doit avoir une copie de la version transmise à l'ANR.
+
+\bigskip
+
+Ce modèle doit être utilisé uniquement pour le compte-rendu de fin de projet.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Identification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\noindent\begin{tabular}{| p{.4\textwidth} | p{.55\textwidth} |}
+	\hline
+	Acronyme du projet & \projectName{} \\
+	\hline
+	Titre du projet &  \\
+	\hline
+	Coordinateur du projet (société/organisme) & \\
+	\hline
+	Période du projet 
+	(date de début – date de fin) & \\
+	\hline
+	Site web du projet, le cas échéant & \url{https://yourlab.fr/yourproject/} \\
+	\hline
+\end{tabular}
+
+\bigskip
+
+\noindent\begin{tabular}{| p{.4\textwidth} | p{.55\textwidth} |}
+	\hline
+	\multicolumn{2}{|l|}{Rédacteur de ce rapport} \\
+	\hline
+	Civilité, prénom, nom &  \\
+	\hline
+	Téléphone & \\
+	\hline
+	Adresse électronique &  \\
+	\hline
+	Date de rédaction & \today{} \\
+	\hline
+\end{tabular}
+
+\bigskip
+
+\noindent\begin{tabular}{| p{.4\textwidth} | p{.55\textwidth} |}
+	\hline
+	\multicolumn{2}{|l|}{Si différent du rédacteur, indiquer un contact pour le projet} \\
+	\hline
+	Civilité, prénom, nom &  \\
+	\hline
+	Téléphone & \\
+	\hline
+	Adresse électronique &  \\
+	\hline
+\end{tabular}
+
+\bigskip
+
+
+\bigskip
+
+\noindent\begin{tabular}{| p{.4\textwidth} | p{.55\textwidth} |}
+	\hline
+	Liste des partenaires présents à la
+fin du projet (société/organisme et
+responsable scientifique) &  \\
+	\hline
+\end{tabular}
+
+\bigskip
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résumé consolidé public}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Ce résumé est destiné à être diffusé auprès d'un large public pour promouvoir les résultats du projet, il ne fera donc pas mention de résultats confidentiels et utilisera un vocabulaire adapté mais n'excluant pas les termes techniques. Il en sera fourni une version française et une version en anglais. Il est nécessaire de respecter les instructions ci-dessous.}
+
+\ifdefined\VersionWithInstructions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Instructions pour les résumés consolidés publics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fi
+
+\instructions{%
+
+\textbf{Les résumés publics en français et en anglais doivent être structurés de la façon suivante.}
+
+\bigskip
+
+\textbf{Titre d'accroche du projet} (environ 80 caractères espaces compris)
+
+Titre d'accroche, si possible percutant et concis, qui  résume et explicite votre projet selon une logique grand public : il n'est pas nécessaire de présenter exhaustivement le projet mais il faut plutôt s'appuyer sur son aspect le plus marquant. 
+
+\bigskip
+
+Les deux premiers paragraphes sont précédés d'un titre spécifique au projet rédigé par vos soins.
+
+\bigskip
+
+\textbf{Titre 1~: situe l'objectif  général du projet et sa problématique} (150 caractères max espaces compris)
+
+\textbf{Paragraphe 1~:} (environ 1200 caractères espaces compris)
+
+Le paragraphe 1 précise les enjeux et objectifs du projet : indiquez le contexte, l'objectif général, les problèmes traités, les solutions recherchées, les perspectives et les retombées au niveau technique ou/et sociétal
+
+
+\bigskip
+\bigskip
+
+
+\textbf{Titre 2~: précise les méthodes ou technologies utilisées} (150 caractères max espaces compris)
+
+\textbf{Paragraphe 2~}: (environ 1200 caractères espaces compris)
+
+Le paragraphe 2 indique comment les résultats attendus sont obtenus grâce à certaines méthodes ou/et technologies. Les technologies utilisées ou/et les méthodes permettant de surmonter les verrous sont explicitées (il faut éviter le jargon scientifique, les acronymes ou les abréviations).
+
+\bigskip
+
+\textbf{Résultats majeurs du projet} (environ 600 caractères espaces compris)
+
+Faits marquants diffusables en direction du grand public, expliciter les applications ou/et les usages rendus possibles, quelles sont les pistes de recherche ou/et de développement originales, éventuellement non prévues au départ.
+
+Préciser aussi toute autre retombée= partenariats internationaux, nouveaux débouchés, nouveaux contrats, start-up, synergies de recherche, pôles de compétitivités, etc.
+
+\bigskip
+
+\textbf{Production scientifique et brevets depuis le début du projet} (environ 500 caractères espaces compris) 
+
+Ne pas mettre une simple liste mais faire quelques commentaires. Vous pouvez aussi indiquer les actions de normalisation
+
+\bigskip
+
+\textbf{Illustration}
+
+Une illustration avec un schéma, graphique ou photo et une brève légende. L'illustration doit être clairement lisible à une taille d'environ 6cm de large et 5cm de hauteur. Prévoir une résolution suffisante pour l'impression. Envoyer seulement des illustrations dont vous détenez les droits.
+
+\bigskip
+
+\textbf{Informations factuelles}
+
+Rédiger une phrase précisant le type de projet (recherche industrielle, recherche fondamentale, développement expérimental, exploratoire, innovation, etc.), le coordonnateur, les partenaires, la date de démarrage effectif, la durée du projet, l'aide ANR et le coût global du projet, par exemple \og{}Le projet XXX est un projet de recherche fondamentale coordonné par xxx. Il associe aussi xxx, ainsi que des laboratoires xxx et xxx). Le projet a commencé en juin 2006 et a duré 36 mois. Il a bénéficié d'une aide ANR de xxx € pour un coût global de l'ordre de xxx\,€\fg{}
+}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Résumé consolidé public en français}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Suivre impérativement les instructions ci-dessus.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Résumé consolidé public en anglais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Suivre impérativement les instructions ci-dessus.}
+
+
+\selectlanguage{english}
+
+% TODO: insert your abstract in English here
+
+
+\selectlanguage{french}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mémoire scientifique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+\textbf{Maximum 5 pages.} On donne ci-dessous des indications sur le contenu possible du mémoire. Ce mémoire peut être accompagné de rapports annexes plus détaillés.
+
+\bigskip
+
+Le mémoire scientifique couvre la totalité de la durée du projet. Il doit présenter une synthèse auto-suffisante rappelant les objectifs, le travail réalisé et les résultats obtenus mis en perspective avec les attentes initiales et l'état de l'art. C'est un document d'un format semblable à celui des articles scientifiques ou des monographies. Il doit refléter le caractère collectif de l'effort fait par les partenaires au cours du projet. Le coordinateur prépare ce rapport sur la base des contributions de tous les partenaires. Une version préliminaire en est soumise à l'ANR pour la revue de fin de projet. 
+
+\bigskip
+
+Un mémoire scientifique signalé comme confidentiel ne sera pas diffusé. Justifier brièvement la raison de la confidentialité demandée. Les mémoires non confidentiels seront susceptibles d'être diffusés par l'ANR, notamment via les archives ouvertes \url{http://hal.archives-ouvertes.fr}.
+}
+
+\bigskip
+
+\subsubsection{\emph{Mémoire scientifique confidentiel}: oui / non}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Résumé du mémoire}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Ce résumé peut être repris du résumé consolidé public.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Enjeux et problématique, état de l'art}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Présenter les enjeux initiaux du projet, la problématique formulée par le projet, et l'état de l'art sur lequel il s'appuie. Présenter leurs éventuelles évolutions pendant la durée du projet (les apports propres au projet sont présentés en \cref{subsection-resultats}).}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Approche scientifique et technique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Résultats obtenus}\label{subsection-resultats}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Positionner les résultats par rapports aux livrables du projet et aux publications, brevets etc. Revisiter l'état de l'art et les enjeux à la fin du projet.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exploitation des résultats}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Discussion sur le degré de réalisation des objectifs initiaux, les verrous restant à franchir, les ruptures, les élargissements possibles, les perspectives ouvertes par le projet, l'impact scientifique, industriel ou sociétal des résultats. }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Références}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Liste des livrables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Quand le projet en comporte, reproduire ici le tableau des livrables fourni au début du projet. Mentionner l'ensemble des livrables, y compris les éventuels livrables abandonnés, et ceux non prévus dans la liste initiale.}
+
+
+
+\noindent\begin{longtable}{| p{1.7cm} | p{.5cm} | p{3cm} | p{3cm} | p{3cm} | p{3.5cm} |}
+	\hline
+	\rowcolor{ANRgrispale}
+	\tableheader{Date de livraison} & \tableheader{N\textdegree} & \tableheader{Titre} & \color{ANRbleu}\textbf{Nature} (rapport, logiciel, prototype, données, …) & \color{ANRbleu}\textbf{Partenaires} (\uline{souligner le responsable}) & \tableheader{Commentaires} \\
+	\hline
+	& 1 & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+	& & & & & \\
+	\hline
+\end{longtable}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Impact du projet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{
+Ce rapport rassemble des éléments nécessaires au bilan du projet et plus globalement permettant d'apprécier l'impact du programme à différents niveaux.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Indicateurs d'impact}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Nombre de publications et de communications (à détailler en \cref{subsection-publications})}
+
+\instructions{
+Comptabiliser séparément les actions monopartenaires, impliquant un seul partenaire, et les actions multipartenaires~ résultant d'un travail en commun.
+
+\textbf{Attention} : éviter une inflation artificielle des publications, mentionner uniquement celles qui résultent directement du projet (postérieures à son démarrage, et qui citent le soutien de l'ANR et la référence du projet).
+}
+
+
+\noindent\begin{tabular}{| p{3.5cm} | p{6cm} | p{3cm} | p{3cm} |}
+	\hline
+	& & \tableheader{Publications \mbox{multipartenaires}} & \tableheader{Publications \mbox{monopartenaires}} \\
+	\hline
+	\multirow{3}{*}{\tableheader{International}} & \tableheader{Revue à comité de lecture} & &  \\
+	\cline{2-4}
+	& \tableheader{Ouvrages ou chapitres d'ouvrage} & & \\
+	\cline{2-4}
+	& \tableheader{Communications (conférence)} & & \\
+	\hline
+	\multirow{3}{*}{\tableheader{France}} & \tableheader{Revue à comité de lecture} & &  \\
+	\cline{2-4}
+	& \tableheader{Ouvrages ou chapitres d'ouvrage} & & \\
+	\cline{2-4}
+	& \tableheader{Communications (conférence)} & & \\
+	\hline
+	\multirow{3}{*}{\tableheader{Actions de diffusion}} & \tableheader{Articles vulgarisation} & &  \\
+	\cline{2-4}
+	& \tableheader{Conférences vulgarisation} & & \\
+	\cline{2-4}
+	& \tableheader{Autres} & & \\
+	\hline
+\end{tabular}
+
+
+
+\subsubsection{Autres valorisations scientifiques (à détailler en \cref{subsection-valorisation})}
+
+\instructions{Ce tableau dénombre et liste les brevets nationaux et internationaux, licences, et autres éléments de propriété intellectuelle consécutifs au projet, du savoir faire, des retombées diverses en précisant les partenariats éventuels. Voir en particulier celles annoncées dans l'annexe technique). }
+
+
+\noindent\begin{tabular}{| p{5cm} | p{11.5cm} |}
+	\hline
+	& \tableheader{Nombre, années et commentaires 
+(valorisations avérées ou probables)} \\
+	\hline
+	\tableheader{Brevets internationaux obtenus} & \\
+	\hline
+	\tableheader{Brevet internationaux en cours d'obtention} & \\
+	\hline
+	\tableheader{Brevets nationaux obtenus} & \\
+	\hline
+	\tableheader{Brevet nationaux en cours d'obtention} & \\
+	\hline
+	\tableheader{Licences d'exploitation (obtention / cession)} & \\
+	\hline
+	\tableheader{Créations d'entreprises ou essaimage} & \\
+	\hline
+	\tableheader{Nouveaux projets collaboratifs} & \\
+	\hline
+	\tableheader{Colloques scientifiques} & \\
+	\hline
+	\tableheader{Autres (préciser)} & \\
+	\hline
+\end{tabular}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Liste des publications et communications}\label{subsection-publications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{Répertorier les publications résultant des travaux effectués dans le cadre du projet. On suivra les catégories du premier tableau de la section Erreur : source de la référence non trouvée en suivant les normes éditoriales habituelles. En ce qui concerne les conférences, on spécifiera les conférences invitées.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Liste des éléments de valorisation}\label{subsection-valorisation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+La liste des éléments de valorisation inventorie les retombées (autres que les publications) décomptées dans le deuxième tableau de la section Erreur : source de la référence non trouvée. On détaillera notamment :
+\begin{itemize}
+	\item brevets nationaux et internationaux, licences, et autres éléments de propriété intellectuelle consécutifs au projet.
+	\item logiciels et tout autre prototype
+	\item actions de normalisation 
+	\item lancement de produit ou service, nouveau projet, contrat, …
+	\item le développement d'un nouveau partenariat,
+	\item la création d'une plate-forme à la disposition d'une communauté
+	\item création d'entreprise, essaimage, levées de fonds
+	\item autres (ouverture internationale, …)
+\end{itemize}
+
+Elle en précise les partenariats éventuels. Dans le cas où des livrables ont été spécifiés dans l'annexe technique, on présentera ici un bilan de leur fourniture.
+}
+
+
+
+\begin{landscape}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Bilan et suivi des personnels recrutés en CDD (hors stagiaires)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+Ce tableau dresse le bilan du projet en termes de recrutement de personnels non permanents sur CDD ou assimilé. Renseigner une ligne par personne embauchée sur le projet quand l'embauche a été financée partiellement ou en totalité par l'aide de l'ANR et quand la contribution au projet a été d'une durée au moins égale à 3 mois, tous contrats confondus, l'aide de l'ANR pouvant ne représenter qu'une partie de la rémunération de la personne sur la durée de sa participation au projet.
+Les stagiaires bénéficiant d'une convention de stage avec un établissement d'enseignement ne doivent pas être mentionnés.
+
+Les données recueillies pourront faire l'objet d'une demande de mise à jour par l'ANR jusqu'à 5 ans après la fin du projet.
+
+\bigskip
+}
+
+
+{
+\footnotesize
+\setlength{\tabcolsep}{2pt} % . The default value is 6pt.
+
+\noindent\begin{tabular}{| p{1.5cm} | p{.6cm} | p{1.5cm} | p{1.1cm} | p{1.1cm} | p{1.1cm} | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{1cm} | p{1.1cm} | p{2cm} | p{1.5cm} | p{1.5cm} | p{1.5cm} | p{2cm} |}
+	\hline
+	\multicolumn{4}{| l |}{\cellcolor{ANRgrispale}Identification}
+	&
+	\multicolumn{3}{ l |}{\cellcolor{ANRgrispale}Avant le recrutement sur le projet}
+	&
+	\multicolumn{4}{l|}{\cellcolor{ANRgrispale}Recrutement sur le projet}
+	&
+	\multicolumn{5}{l|}{\cellcolor{ANRgrispale}Après le projet}
+	\\
+	\hline
+	\rowcolor{ANRgrispale}
+	Nom et prénom
+	&
+	Sexe H/F
+	&
+	Adresse email (1)
+	&
+	Date des dernières nouvelles
+	&
+	Dernier diplôme obtenu au moment du recrutement
+	&
+	Lieu d'études (France, UE, hors UE)
+	&
+	Expérience prof.\ antérieure, y compris post-docs (ans)
+	&
+	Partenaire ayant embauché la personne
+	&
+	Poste dans le projet (2)
+	&
+	Durée  missions (mois) (3)
+	&
+	Date de fin de mission sur le projet
+	&
+	Devenir professionnel  (4)
+	&
+	Type d’employeur (5)
+	&
+	Type d’emploi (6)
+	&
+	Lien au projet ANR (7)
+	&
+	Valorisation expérience (8)
+	\\
+	\hline
+	& & & & & & & & & & & & & & & \\
+	\hline
+	& & & & & & & & & & & & & & & \\
+	\hline
+	& & & & & & & & & & & & & & & \\
+	\hline
+\end{tabular}
+
+}
+
+
+\instructions{%
+
+\subsubsection{Aide pour le remplissage}
+\textbf{(1) Adresse email}~: indiquer une adresse email la plus pérenne possible
+
+\textbf{(2) Poste dans le projet}~: post-doc, doctorant, ingénieur ou niveau ingénieur, technicien, vacataire, autre (préciser)
+
+\textbf{(3) Durée missions}~: indiquer en mois la durée totale des missions (y compris celles non financées par l'ANR) effectuées sur le projet
+
+\textbf{(4) Devenir professionnel}~: CDI, CDD, chef d'entreprise, encore sur le projet, post-doc France, post-doc étranger, étudiant, recherche d'emploi, sans nouvelles
+
+\textbf{(5) Type d'employeur}~: enseignement et recherche publique, EPIC de recherche, grande entreprise, PME/TPE, création d'entreprise, autre public, autre privé, libéral, autre (préciser)
+
+\textbf{(6) Type d'emploi}~: ingénieur, chercheur, enseignant-chercheur, cadre, technicien, autre (préciser)
+
+\textbf{(7) Lien au projet ANR}~: préciser si l'employeur est ou non un partenaire du projet 
+
+\textbf{(8) Valorisation expérience}~: préciser si le poste occupé valorise l'expérience acquise pendant le projet.
+
+Les informations personnelles recueillies feront l'objet d'un traitement de données informatisées pour les seuls besoins de l'étude anonymisée sur le devenir professionnel des personnes recrutées sur les projets ANR. Elles ne feront l'objet d'aucune cession et seront conservées par l'ANR pendant une durée maximale de 5 ans après la fin du projet concerné. Conformément à la loi n\textdegree{} 78-17 du 6 janvier 1978 modifiée, relative à l'Informatique, aux Fichiers et aux Libertés, les personnes concernées disposent d'un droit d'accès, de rectification et de suppression des données personnelles les concernant. Les personnes concernées seront informées directement de ce droit lorsque leurs coordonnées sont renseignées. Elles peuvent exercer ce droit en s'adressant l'ANR (\url{http://www.agence-nationale-recherche.fr/Contact}). 
+
+}
+
+\end{landscape}
+
+
+
+\end{document}
