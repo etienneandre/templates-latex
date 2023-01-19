@@ -1,0 +1,507 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Étienne André
+% Date  : 2023/02
+% Source du rapport .docx originel : rapport_activite_avancement2023.docx, récupéré en janvier 2023 sur https://www.galaxie.enseignementsup-recherche.gouv.fr/ensup/electra/rapport_activite_avancement2023.docx
+% Distributed with the use that it will be useful mais sans absolument aucune garantie !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNCOMMENT THIS LIGNE FOR VERSION WITH COMMENTS
+%  \def \VersionWithComments{}
+% UNCOMMENT THIS LIGNE FOR DRAFT VERSION
+ \def \DraftVersion{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\VersionWithComments
+	\def \DraftVersion{}
+\fi
+
+
+% NOTE: le template dit 12 points mais est lui-même en… 9 points !
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+
+% NOTE: Méga super moche d'écrire un texte en sans-serif, mais c'est le template…
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{geometry}
+\geometry{a4paper, top=1cm, left=2cm, right=2cm, bottom=1cm, nohead, includefoot} % includehead
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Watermarking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage{draftwatermark}
+	\SetWatermarkText{brouillon}
+	\SetWatermarkScale{8}
+	\SetWatermarkColor[gray]{0.85}
+\fi
+% END Watermarking
+
+
+\usepackage[svgnames,table]{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HYPERLINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[pdftex, colorlinks=true]{hyperref}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FORMATTING ACCORDING TO THE TEMPLATE STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{sectsty}
+\usepackage{titlesec}
+
+
+% NOTE: Pas de numéros de sections (c'est pas malin du tout mais c'est le template…)
+% NOTE: pas trouvé le souligné (histoire de faire encore plus moche) dans cette macro
+\titleformat{\section}{\normalfont\normalsize\bfseries}{}{0em}{}
+% \renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\titleformat{\subsection}{\normalfont\small}{\thesubsection.}{1em}{}
+
+\newcommand{\ligneSeparatrice}{\noindent{\color{black!40}\rule{\textwidth}{2pt}}}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMENTAIRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined \VersionWithComments
+	\newcommand{\instructionsSection}[1]{{\color{blue}[\textbf{Instructions section 27}: #1]}}
+\else
+	\newcommand{\instructionsSection}[1]{}
+\fi
+
+\newcommand{\instructions}[1]{{\color{black}#1}}
+
+
+\title{Avancement de grade 2023}
+\author{Étienne André}
+% \date{}
+
+\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\VersionWithComments
+
+	\textcolor{red}{This is the version with comments.
+	To disable comments, comment out line~6 in the \LaTeX{} source.}
+	
+	\medskip
+	
+\fi
+
+{
+	\Large\bfseries
+	\noindent{}Rapport d'activités
+}
+
+\bigskip
+
+\instructions{
+\em
+Ce document est une trame pour vous aider à rédiger votre rapport d'activités. L'accent sera mis sur les activités depuis la dernière promotion, ou à défaut, depuis la nomination dans le corps. Les candidats sont invités à renseigner autant que possible les différentes rubriques.
+
+\bigskip
+
+La police de caractère utilisée pour rédiger le contenu des rubriques doit avoir une taille minimale de 12~points. L'organisation générale des rubriques doit être respectée. L'ensemble de cette partie rédactionnelle ne doit pas excéder~15 pages (hors annexes). Pour argumenter les items, il convient de ne pas se limiter à des listes.
+
+\bigskip
+}
+
+\noindent\rule{\textwidth}{2pt}
+
+\medskip
+
+{\em
+\def\arraystretch{2}
+\noindent{}\begin{tabular}{l l @{\hspace{3em}} l l}
+	Nom d'usage & \textbf{TODO} & Prénom : & \textbf{TODO} \\
+	Corps : & \textbf{TODO} & Prénom : & \textbf{TODO} \\
+	Discipline/section : & \textbf{TODO} \\
+\end{tabular}
+}
+
+\medskip
+
+\noindent\rule{\textwidth}{2pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Synthèse du parcours professionnel et contexte d'exercice}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	Présentation chronologique des principales étapes de la carrière faisant apparaître les éléments les plus significatifs (diplômes, positions, principales responsabilités et activités)
+
+	\medskip
+
+	Présentation de l'évolution éventuelles des activités
+
+	\medskip
+
+	Présentation des formations suivies notamment concernant vos activités pédagogiques
+	}
+
+	\medskip
+
+	\textbf{(rubrique limitée à 9000 caractères, blancs non compris, soit 3 pages maximum)}
+}
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Investissement pédagogique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Présentation synthétique de l'activité d'enseignement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	principaux enseignements en mettant l'accent sur les thématiques enseignées, les pratiques pédagogiques, les activités particulières : création d'un enseignement, transformation des enseignements.
+	}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Présentation des enseignements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	faisant apparaître la catégorie de diplôme (national, universitaire) le niveau (LMD), le type de formation (formation initiale / continue, professionnelle, présentielle / à distance), la nature (cours magistraux, TP, TD, encadrement de travaux de fin d'étude et de stages), les effectifs, le volume horaire (ce descriptif sera complété sous la forme d'un tableau détaillé de présentation en \textbf{annexe~1})
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités pédagogiques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	en particulier direction, animation, montage de formations, notamment à l’international, fabrication et utilisation de ressources pédagogiques, soutien à l'insertion professionnelle, soutien à l'entrepreneuriat, etc.
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diffusion, rayonnement, activités internationales.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Activité scientifique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Présentation synthétique des thématiques de recherche}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	grands axes de recherche et apport dans le ou les domaines concernés
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Publications et productions scientifiques }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	présentation, en quelques lignes, des 5 publications (ou brevets, logiciels, compte rendus, rapports) jugées les plus significatives (Liste complète en \textbf{annexe 2} sans transmission des documents)
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Encadrement doctoral et scientifique}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	(Liste complète en \textbf{annexe 3})
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Diffusion et rayonnement}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Expertise (organismes nationaux ou internationaux)
+		\item Activités éditoriales (expertises, responsabilités de collections…)
+    	\item Participation à des jurys de thèse et de HDR (hors établissement)
+    	\item Diffusion du savoir (vulgarisation), responsabilités et activités au sein de sociétés savantes ou associations
+    	\item Organisation de colloques, conférences, journées d'étude
+    	\item Participation à un réseau de recherche, invitations dans des universités étrangères…
+	\end{itemize}
+
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités scientifiques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Animation équipes de recherche (préciser le rôle, taille, composition, budget, dates)
+		\item Contrats de recherche évalués dans le cadre d'un appel à projet ou de gré à gré (préciser l'organisme/partenaire, les dates, le rôle, les ressources financières et humaines)
+	\end{itemize}
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Autres}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Responsabilités collectives et d'intérêt général}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Présentation synthétique des responsabilités}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités administratives}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Présidence ou vice-présidence d'établissement de l'enseignement supérieur
+    	\item Direction de composante, d'école doctorale, de services communs
+    	\item Direction de structures de recherche (UMR, EA, SFR, ERT, plateformes ...)
+    	\item Missions et gestion de projets de l'établissement
+    	\item Autres
+	\end{itemize}
+
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités et mandats locaux ou régionaux}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Participation aux conseils centraux (rôle, missions…)
+		\item Participation aux conseils de composantes, de laboratoires...
+    	\item Autres
+	\end{itemize}
+
+	}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Responsabilités et mandats (internationaux, nationaux)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Participations à des instances nationales - CNU, CNRS, conseils des établissements publics, jurys de concours.
+		\item Responsabilités exercées dans les agences nationales (HCERES, ANR, …)
+    	\item Autres
+	\end{itemize}
+
+	}
+}
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Autres informations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+		Rubrique pour la présentation de situations particulières ou d'actions non mentionnées précédemment.
+
+		\bigskip
+
+		Cette rubrique est destinée \textbf{notamment} aux enseignants-chercheurs reconnus travailleurs handicapés (RQTH) pour leur permettre de présenter l'ensemble des activités exercées en compensation de leur handicap.
+
+	}
+}
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Activité hospitalière (cette rubrique ne concerne que le personnels des disciplines de santé)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Présentation de l'activité hospitalière en faisant apparaître les éléments jugés les plus significatifs (la rubrique est limitée à 6000 caractères, blancs non compris, soit environ 2 pages)
+		\item Membre/Direction d'Unité fonctionnelle ou de Service
+    	\item Présence/Direction : Commission Consultative médicale (CCM), Commission Médicale d'Établissement (CME), Recherche clinique
+	\end{itemize}
+
+	}
+}
+
+
+
+
+%------------------------------------------------------------
+\ligneSeparatrice{}
+%------------------------------------------------------------
+
+
+\newpage
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Annexes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tableau des enseignements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+{\centering
+\setlength{\tabcolsep}{2pt} % . The default value is 6pt.
+\begin{tabular}{| l | l | l | l | l | l | l | l |}
+	\hline
+	Année & Niveau & Diplôme & Intitulé & Type de formation (1) & Nature (2) & Effectifs & Volume horaire annuel \\
+	\hline
+	TODO & TODO & TODO & TODO & TODO & TODO & TODO & TODO \\
+	\hline
+\end{tabular}
+
+}
+
+\bigskip
+
+(1) formation initiale / continue, professionnelle, présentielle / à distance
+
+(2) cours magistraux, TP, TD, encadrement de travaux de fin d'étude et de stages
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Liste classée des publications (celles-ci ne doivent pas être jointes)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	(Dans la liste des auteurs mettre votre nom en gras et souligner le nom des étudiants encadrés)
+
+	Présentation des publications selon les spécificités disciplinaires. Les candidats sont invités à se reporter aux éventuelles préconisations formulées par leur section.
+
+	\begin{itemize}
+		\item Articles dans revues internationales à comité de lecture
+    	\item Articles dans revues nationales à comité de lecture
+    	\item Ouvrages individuels et direction d'ouvrages collectifs
+    	\item Chapitres d'ouvrages
+    	\item Brevets, licences, logiciels
+    	\item Actes publiés de conférences internationales, congrès et colloques…
+    	\item Autres
+	\end{itemize}
+
+	}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Liste des direction et codirection de thèses}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{%
+	{\em
+	\begin{itemize}
+		\item Thèses soutenues (en précisant le(s) date début, date fin, taux de co-encadrement et co­-encadrants, publications et devenir des docteurs)
+    	\item Thèses en cours (en précisant le(s) date début, taux de co-encadrement et co-encadrants et publications)
+	\end{itemize}
+
+	}
+}
+
+
+\end{document}
