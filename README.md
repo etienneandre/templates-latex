@@ -20,3 +20,9 @@ ANR: final report (2019 version)
 ## `ANR-2019-submission-phase2`
 ANR: full project proposal (phase 2) report (2019 version)
 
+## `IUF-2023`
+[IUF](https://www.iufrance.fr/): campaign 2023
+
+## `IUF-2024`
+[IUF](https://www.iufrance.fr/): campaign 2024
+
