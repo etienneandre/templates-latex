@@ -1,0 +1,120 @@
+% Template made from a project by Didier Lime, Étienne André et al.
+\documentclass[a4paper,11pt,english]{article}
+
+\usepackage[left=2cm,right=2cm,top=1cm,bottom=1cm,head=1.2cm,includeheadfoot]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{eurosym}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{sectsty}
+\usepackage{url}
+\usepackage{titlesec}
+\usepackage[colorlinks,urlcolor=urllinks,citecolor=biblinks]{hyperref}
+
+% \def\euros{\,\euro}
+% \def\keuros{\,k\euro}
+
+\definecolor{HeaderTable}{rgb}{0.6,0.8,0.9}
+\definecolor{Title}{rgb}{0.2,0.5,0.6}
+\definecolor{urllinks}{rgb}{0.0,0.5,0.7}
+\definecolor{biblinks}{rgb}{0.0,0.7,0.5}
+\newcolumntype{a}{>{\columncolor{HeaderTable}}l}
+\newcolumntype{b}{>{\columncolor{HeaderTable}}X}
+
+
+%------------------------------------------------------------
+% BEGIN YOUR PROJECT DATA
+\newcommand{\acronym}{YourAcronym}
+\newcommand{\proposalCoordinator}{Your Name Here}
+\newcommand{\proposalDuration}{XXXXX months}
+\newcommand{\proposalFunding}{Your FUNDING INSTRUMENT}
+\newcommand{\proposalScientificTheme}{CE48: Fondements du numérique: informatique, automatique, traitement du signal}
+% END YOUR PROJECT DATA
+%------------------------------------------------------------
+
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Taken from Étienne
+\newcommand{\descriptionPersonne}[5]{
+	\noindent \textcolor{green!40!black}{\textbf{#1}}#2\\
+	{\scriptsize{\em #3 #4}
+	\hfill \url{#5}
+	}
+	
+	\smallskip
+}
+
+\newcommand{\titrelabo}[1]{\medskip
+	{\centering
+
+	\fcolorbox{white}{blue!15}{
+% 		\parbox{\textwidth}{
+		\textbf{#1}
+% 		}
+	}
+	
+	}
+}
+
+
+\lhead{}
+\rhead{}
+\chead{\begin{tabularx}{\linewidth}{a!{\color{white}\vrule}b!{\color{white}\vrule}a}%
+            \textcolor{Title}{\textbf{AAPG2025}}& \textbf{\acronym}& \proposalFunding{}\\ %
+            \arrayrulecolor{white}\hline
+            Coordinated by:& \proposalCoordinator{} & \proposalDuration{} \\ %
+            \arrayrulecolor{white}\hline
+            \multicolumn{3}{a}{\proposalScientificTheme{}}
+       \end{tabularx}}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+
+\pagestyle{fancy}
+
+\sectionfont{\color{Title}}
+\subsectionfont{\color{Title}}
+\paragraphfont{\color{blue}}
+\renewcommand{\thesection}{\color{blue}\Roman{section}}
+
+\titlespacing{\paragraph}{0pt}{3pt}{8pt}
+\titlespacing{\subsection}{0pt}{4pt}{4pt}
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+% Biblio spacing
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{1pt plus 0.3ex}
+}
+
+
+\begin{document}
+
+\begin{center}
+    {\Large\bf Our great project proposal (\acronym)}
+\end{center}
+
+\section{Pre-proposal’s context, positioning and objective(s)}
+
+% \subsection{Objectives}
+
+
+
+\section{Partnership (consortium or team)}
+
+\paragraph{scientific coordinator}
+
+\paragraph{consortium and its complementarity}
+
+\section{References}
+
+
+\end{document}

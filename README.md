@@ -6,6 +6,9 @@ Some LaTeX templates to mimick the MS W*rd templates for some project/grant subm
 
 So far, this repository contains the following templates:
 
+## `ANR-2025-submission-phase1
+ANR: project pre-proposal (phase 1) report (2024 version for the 2025 call)
+
 ## `avancement-grade-2023`
 Avancement de grade pour les EC en France
 Version 2023
