@@ -34,6 +34,10 @@ Version 2023
 ### `IUF-2024`
 [IUF](https://www.iufrance.fr/): campaign 2024
 
+### `IUF-2027`
+[IUF](https://www.iufrance.fr/): campaign 2027 (by @VivianePons)
+
+
 
 ## PEDR (prime d'encadrement doctoral et de recherche)
 
