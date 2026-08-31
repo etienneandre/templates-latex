@@ -1,0 +1,1116 @@
+% Author       : Étienne André and Viviane Pons
+% Created      : 2026/08 (adapted from 2024 version)
+% Last modified: 2026/08
+% Distributed with the use that it will be useful mais sans absolument aucune garantie !
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% UNCOMMENT THIS LIGNE FOR FRENCH VERSION
+ \def \FrenchVersion{}
+% UNCOMMENT THIS LIGNE FOR VERSION WITH COMMENTS
+% \def \VersionWithComments{}
+% UNCOMMENT THIS LIGNE FOR DRAFT VERSION
+% \def \DraftVersion{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ifdefined\VersionWithComments
+	\def \DraftVersion{}
+\fi
+
+
+% NOTE: requirement = ``Using text font Arial (11)''
+\documentclass[a4paper,11pt]{article}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[utf8]{inputenc}
+\ifdefined\FrenchVersion
+	\usepackage[english,french]{babel}
+	\newcommand{\anglaisFrancais}[2]{#2}
+	\newcommand{\selectCurrentLanguage}{\selectlanguage{french}}
+	% Nom de famille
+	\newcommand{\styleNomdeFamille}[1]{\textsc{#1}}
+\else
+	\usepackage[french,english]{babel}
+	\newcommand{\anglaisFrancais}[2]{#1}
+	\newcommand{\selectCurrentLanguage}{\selectlanguage{english}}
+	% Nom de famille
+	\newcommand{\styleNomdeFamille}[1]{#1}
+\fi
+\usepackage{csquotes} % required by babel/polyglossia
+\usepackage{makecell}
+\usepackage{tcolorbox}
+
+% Pour les guillemts français :
+\usepackage[T1]{fontenc}
+
+\usepackage{graphicx}
+\graphicspath{{images}}
+
+\usepackage[export]{adjustbox} % for valign
+
+\usepackage{soul} % texte barré
+
+\usepackage{longtable} % for longtable with page breaks
+
+
+
+
+% Checkboxes
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newcommand{\boxchecked}{$\text{\rlap{$\checkmark$}}\square$}
+\newcommand{\boxunchecked}{$\square$}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inline lists
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{paralist} % inline lists
+
+% Enumeration with (i)
+\newenvironment{ienumerate}
+	{\ifdefined\VersionLong\begin{enumerate}\else\begin{inparaenum}[\itshape i\upshape)]\fi}
+	{\ifdefined\VersionLong\end{enumerate}\else\end{inparaenum}\fi}
+
+% Enumeration with (1)
+\newenvironment{oneenumerate}
+	{\ifdefined\VersionLong\begin{enumerate}\else\begin{inparaenum}[1)]\fi}
+	{\ifdefined\VersionLong\end{enumerate}\else\end{inparaenum}\fi}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN Watermarking
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\chaineBrouillon}{\anglaisFrancais{draft}{brouillon}}
+\ifdefined\DraftVersion
+	\usepackage{draftwatermark}
+	\SetWatermarkText{\chaineBrouillon{}}
+	\SetWatermarkScale{1.5}
+	\SetWatermarkColor[gray]{0.85}
+\fi
+% END Watermarking
+
+
+\usepackage[svgnames,table]{xcolor}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HYPERLINKS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{darkblue}{rgb}{0, 0, 0.7}
+
+\usepackage[%
+		pdftex,
+		pdfauthor={Your name},%
+		pdftitle={Dossier de candidature IUF},
+		breaklinks  = true,
+		colorlinks  = true,
+% 	\ifdefined \VersionWithComments
+% 		pagebackref = true,
+% 	\fi
+		citecolor   = blue!50!blue,
+		linkcolor   = darkblue,
+		urlcolor    = blue!50!green,
+	]{hyperref}
+
+
+\ifdefined\FrenchVersion{}
+	\usepackage[french,nameinlink]{cleveref}
+\else
+	\usepackage[english,capitalise,nameinlink]{cleveref}
+\fi
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MACROS FOR ENVIRONMENT ET AL.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\defProblem}[1]
+{%
+\noindent\fcolorbox{black}{green!15}{
+	\begin{minipage}{.95\columnwidth}
+		\textbf{Key objective:}
+		#1
+	\end{minipage}
+}
+
+	\smallskip
+
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FORMATTING ACCORDING TO IUF STYLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\DraftVersion
+	\usepackage[showframe]{geometry}
+\else
+	\usepackage{geometry}
+\fi
+\geometry{a4paper, top=2cm, left=2cm, right=2cm, bottom=2cm, nohead} % includehead, includefoot
+
+\usepackage{fancyhdr}
+% Turn on the style
+\pagestyle{fancy}
+% Clear the header and footer
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+% \fancyhead{}
+% \fancyfoot{}
+% Set the right side of the footer to be the page number
+\fancyfoot[R]{\small\thepage}
+
+\usepackage{sectsty}
+\usepackage{titlesec} % for \titleformat
+
+
+\renewcommand{\thesection}{\arabic{section})}
+\renewcommand{\thesubsection}{\alph{subsection}}
+% \renewcommand{\thesubsubsection}{\alph{subsubsection}}
+
+% \titleformat{<command>}[<shape>]{<format>}{<label>}{<sep>}{<before-code>}[<after-code>]
+
+
+% NOTE: I give up the \centering
+%\titleformat{\section}{\large\bfseries\color{white}}{
+%\rlap{\color{IUFtitlebackground}\rule[-1cm]{\linewidth}{2cm}} \thesection}{1em}
+%{\MakeUppercase}
+
+\titleformat{\section}[display]
+    {\large\bfseries}{}{0em}%
+    {\begin{tcolorbox}[colback=IUFtitlebackground, colframe=IUFtitlebackground, coltext=white, halign=flush center, sharp corners=all]\thesection.\hspace{.2cm}\MakeUppercase}% 'before' code.
+    [\end{tcolorbox}]
+
+\titleformat{\subsection}[display]
+  {}{}{0em}%
+  {\begin{tcolorbox}[colback=IUFfondgrisboites, colframe=IUFfondgrisboites, halign=flush center, sharp corners=all]\thesubsection}[\end{tcolorbox}]
+
+%\titleformat{\section}{\large\bfseries\color{white}}{\colorbox{Gray}{\makebox[\width][s]{ \thesection \hfill}}}{1em}{\MakeUppercase}
+
+% NOTE:
+% \titleformat{\chapter}
+%   {\centering\Large\bfseries}	% format
+%   {}							% label
+%   {0pt}						% sep
+%   {\huge}
+
+% Background color of the main title in IUF template
+\definecolor{IUFtitlebackground}{HTML}{38B5BF}
+\definecolor{IUFfondgrisboites}{HTML}{D9D9D9}
+\definecolor{IUFfondgristableau}{HTML}{BFBFBF}
+\definecolor{IUFfondgristableaupublis}{HTML}{F2F2F2}
+
+
+\newcommand{\styleAnswer}[1]{\textcolor{blue!90!black}{#1}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COMMENTAIRES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\VersionWithComments
+	\usepackage[colorinlistoftodos,textsize=footnotesize]{todonotes}
+\else
+	\usepackage[disable]{todonotes}
+\fi
+\newcommand{\gennote}[3]{\todo[size=\scriptsize,linecolor=#2,backgroundcolor=#2!25,bordercolor=#2]{#3: #1}\xspace}
+
+% Sometimes, we just need the old-style TODO!
+\ifdefined \VersionWithComments
+	\newcommand{\todoinline}[1]{\mbox{}{\color{red}{\textbf{TODO}\ifx#1\\\else:\ \fi #1}}} % here, ``\\'' stands for ``empty''
+\else
+	\newcommand{\todoinline}[1]{}
+\fi
+
+% Instructions
+
+\ifdefined \VersionWithComments
+	\newcommand{\instructionsNotice}[1]{{\color{gray}{#1}}}
+\else
+	\newcommand{\instructionsNotice}[1]{}
+\fi
+
+\newcommand{\instructions}[1]{{\color{black}{#1}}}
+
+
+
+\newcommand{\projectTitleEN}{MYPROJECT}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%opening
+\title{Dossier IUF 2027}
+\author{Your name}
+% \date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifdefined\VersionWithComments
+
+	\textcolor{red}{This is the version with comments.
+	To disable comments, comment out line~9 in the \LaTeX{} source.}
+	
+	\medskip
+	
+\fi
+
+
+\noindent\includegraphics[width=5.3cm,valign=t]{logo-MESR}
+\hfill{}
+\includegraphics[width=6.6cm,valign=t]{logo-IUF-export.jpg}
+
+{\centering\fcolorbox{IUFtitlebackground}{IUFtitlebackground}{%
+	\begin{minipage}{.95\textwidth}
+	\bigskip
+	\color{white}%
+	\sffamily%
+	\LARGE%
+	\bfseries%
+	\begin{center}
+		\MakeUppercase{\anglaisFrancais{Application Form IUF}{Dossier de candidature IUF}}
+
+		2027-2032
+	\end{center}
+	\medskip
+	\end{minipage}%
+}
+
+}
+
+
+\begin{center}
+% 	\sffamily%
+	\LARGE%
+	\bfseries%
+	\anglaisFrancais{\MakeUppercase{Fundamental chair}}{\MakeUppercase{Chaire fondamentale}}
+\end{center}
+
+\begin{center}
+	\large%
+% 	\sffamily%
+	%\MakeUppercase{\anglaisFrancais{Second choice (optional)}{Second choix (facultatif)}}: \boxunchecked{} \MakeUppercase{innovation} \MakeUppercase{ou} \boxunchecked{} \MakeUppercase{\anglaisFrancais{Scientific mediation}{Médiation scientifique}}
+	%	-- \anglaisFrancais{to be completed at the end of the file}{à compléter en fin de dossier}
+\end{center}
+
+
+\selectlanguage{french}
+
+\bigskip
+
+{\centering\fcolorbox{black}{IUFfondgrisboites}{%
+	\begin{minipage}{.95\textwidth}
+	\medskip
+
+
+	\begin{center}
+	\includegraphics[height=1.5em]{warning.png}
+	\hspace{.4\textwidth}
+	\includegraphics[height=1.5em]{warning.png}
+	\hspace{.4\textwidth}
+	\includegraphics[height=1.5em]{warning.png}
+
+		Avant de remplir le formulaire de candidature,
+
+	nous vous conseillons de lire \underline{attentivement} le document :
+
+	\textbf{\og{}Notice de procédure de dépôt en ligne des candidatures\fg{}}
+
+	\textbf{(Chaire Fondamentale)}
+
+	\medskip
+
+	\includegraphics[height=1.5em]{warning.png}
+	\hspace{.4\textwidth}
+	\includegraphics[height=1.5em]{warning.png}
+	\hspace{.4\textwidth}
+	\includegraphics[height=1.5em]{warning.png}
+	\end{center}
+	\smallskip
+	\end{minipage}%
+}
+
+}
+
+\selectCurrentLanguage{}
+\bigskip
+\bigskip
+
+
+{\centering\fcolorbox{black}{IUFfondgrisboites}{%
+	\begin{minipage}{.95\textwidth}
+	\medskip
+
+
+
+	\textbf{\anglaisFrancais{The application will be considered only if:}{Le dossier ne sera étudié que sous réserve d'avoir été déposé :}}
+
+	\begin{itemize}
+	 \item \anglaisFrancais{Correctly and fully completed in French and English,}{Sous forme complète, rédigée en français et en anglais pour examen par un jury international,}
+	 \item \anglaisFrancais{Submitted by the deadline,}{Avant la date limite,}
+	 \item \anglaisFrancais{Preferably saved in PDF format and named:}{Documents à enregistrer au format PDF et à nommer :}
+	 \\
+	 \textbf{\textcolor{red}{\texttt{formulaire\_candidature\_Fondamentale.pdf} (version française) et
+	 \\
+	 \texttt{application\_form\_Fundamental.pdf} (version anglaise)}}
+	 \item \anglaisFrancais{Using text font Arial (11)}{En utilisant la police de caractère Arial (11)}
+	\end{itemize}
+
+	\end{minipage}%
+}
+
+}
+
+% HACK
+\newpage
+
+
+
+
+{\centering\fcolorbox{IUFtitlebackground}{IUFtitlebackground}{%
+	\begin{minipage}{.98\textwidth}
+	\bigskip
+	\color{white}%
+	\sffamily%
+	\large%
+	\bfseries%
+	\begin{center}
+		\MakeUppercase{\anglaisFrancais{Application type}{Nature de la candidature}}
+	\end{center}
+	\medskip
+	\end{minipage}%
+}
+
+}
+
+\bigskip
+
+\noindent{}\boxchecked{} JUNIOR \hspace{.4\textwidth} \boxunchecked{} SENIOR
+
+\bigskip
+
+\noindent%
+{\def\arraystretch{2}%
+\begin{tabular}{@{} l l}
+	\anglaisFrancais{NUMBERS OF PREVIOUS APPLICATION(S) / YEAR(S):}{NOMBRE DE CANDIDATURE(S) / ANNÉE(S) :} & \styleAnswer{\todoinline{todo}}
+	\\
+	\anglaisFrancais{PREVIOUS IUF NOMINATION(S) / PROMOTION(S):}{NOMINATION(S) À L'IUF / PROMOTION(S) :} & \styleAnswer{\todoinline{todo}}
+	\\
+\end{tabular}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Applicant's identity}{Informations sur le ou la candidat(e)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
+
+
+{\noindent%
+\def\arraystretch{1.5}%
+\begin{tabular}{@{} l l}
+%	\boxchecked{} \MakeUppercase{\anglaisFrancais{Sir}{Monsieur}} & \boxunchecked{} \MakeUppercase{\anglaisFrancais{Madam}{Madame}}
+%	\\
+	\MakeUppercase{\anglaisFrancais{Last name}{Nom}}: & \styleAnswer{\styleNomdeFamille{TODO}}
+	\\
+	\MakeUppercase{\anglaisFrancais{First name}{Prénom}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Sex}{Sexe}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Street address}{Adresse}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Postcode city}{Code postal}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{City}{Ville}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Phone}{Téléphone}}: & \styleAnswer{\todoinline{todo}}
+	\\
+	\MakeUppercase{\anglaisFrancais{E-mail address}{Courriel}}: & \styleAnswer{\nolinkurl{TODO}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Age on 2027.01.01}{Âge au 1\ier{} janvier 2027}}: & \styleAnswer{\todoinline{todo}}
+\end{tabular}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{PROFESSOR (under French decree no. 84-431 of June 6, 1984 and the French decree n°92-1178 of November 2, 1992)}{PROFESSEUR(E) (régi(e) par le décret n° 84-431 du 6 juin 1984 et le décret n° 92-1178 du 2 novembre 1992}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{ASSOCIATE PROFESSOR (under French decree no. 84-431 of June 6, 1984) and the French decree n°92-1178 of November 2, 1992)}{MAÎTRE(SSE) DE CONFÉRENCES (régi(e) par le décret n° 84-431 du 6 juin 1984 et le décret n° 92-1178 du 2 novembre 1992}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{PROFESSOR-HOSPITAL DOCTOR (under French decree no. 2021-1645 of December 13, 2021)}{PROFESSEUR(E)-PRATICIEN(NE) HOSPITIALIER(E) (régi(e) par le décret n° 2021-1645 du 13 décembre 2021)}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{ASSOCIATE PROFESSOR-HOSPITAL DOCTOR (under French decree no. 2021-1645 of December 13, 2021)}{MAÎTRE(SSE) DE CONFÉRENCES-PRATICIEN(NE) HOSPITALIER(E) (régi(e) par le décret n° 2021-1645 du 13 décembre 2021)}
+}
+
+% new page in English
+\ifdefined\FrenchVersion
+\else
+\pagebreak
+\fi
+%
+
+\vspace{.5cm}
+% weird... that the French and English are very different
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{PROFESSOR at Ecole Pratique des Hautes Études (EPHE), at Ecole des hautes Etudes en Sciences Sociales (EHESS), at Ecole des Chartes, or at Ecole Française d’Extrême-Orient (EFEO) under the French decree n° 89-709 of September 28, 1989 and under the French decree n° 89-710 September 28, 1989.}{DIRECTEUR/DIRECTRICES D’ETUDES régi(e) par le décret n° 89-709 du 28 septembre 1989 et le décret n° 89-710 du 28 septembre 1989}
+}
+
+\vspace{.5cm}
+% weird... that the French and English are very different
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{ASSOCIATE PROFESSOR at Ecole pratique des Hautes Etudes (EPHE), at Ecole des Hautes Études en Sciences Sociales (EHESS), at Ecole des Chartes, or at Ecole Française d’Extreme-Orient (EFEO) under the French decree n° 89-709 of September 28, 1989 and under the French decree n° 89-710 September 28, 1989.}{MAÎTRE(SSE) DE CONFÉRENCES (régi(e) par le décret n° 89-709 du 28 septembre 1989 et le décret n° 89-710 du 28 septembre 1989}
+}
+
+\vspace{.5cm}
+% weird... that the French and English are very different
+{\noindent%
+\boxunchecked{}
+	\anglaisFrancais{ASTRONOMERS, ASSISTANT ASTRONOMERS, PHYSICISTS AND ASSISTANT PHYSICISTS under the French decree n° 86-434 of March, 12 1986.}{ASTRONOMES, ASTRONOMES AJDOINTS, PHYSICIENS ET PHYSICIENS ADJOINTS du décret n° 86-434 du 12 mars 1986}
+}
+
+% new page in French
+\ifdefined\FrenchVersion
+\pagebreak
+\else
+\fi
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{UNIVERSITY (OR HIGHER EDUCATION INSTITUTION) AFFILIATION:}{UNIVERSITÉ OU ÉTABLISSEMENT D’APPARTENANCE :}
+	\todoinline{todo}
+}
+
+% only English Form
+\ifdefined\FrenchVersion
+\else
+\vspace{.5cm}
+
+{\noindent%
+	SCIENTIFIC FIELD:
+	\todoinline{todo}
+}
+\fi
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{FIELD ACCORDING TO CNU:}{SECTION CNU DE RATTACHEMENT :}
+	\todoinline{todo}
+}
+
+\vspace{.5cm}
+{\noindent
+\def\arraystretch{1.5}%
+\begin{tabular}{@{} l l}
+\anglaisFrancais{SCIENTIFIC FIELD: }{DOMAINE SCIENTIFIQUE : }&
+\boxunchecked{} \anglaisFrancais{Formal, natural and medical sciences (SFNM)}{Sciences Formelles, de la Nature et Médicales (SFNM)} \\
+&
+\boxunchecked{} \anglaisFrancais{Human and Social Sciences - Humanities (SHSH)}{Sciences Humaines et Sociales, Humanités (SHSH)} 
+\end{tabular}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{DISCIPLINARY PANEL:}{PANEL DISCIPLINAIRE :}
+	\anglaisFrancais{title:}{intitulé :} \todoinline{todo}
+	\anglaisFrancais{acronym:}{sigle :} \todoinline{todo}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{DISCIPLINARY SUB-PANEL:}{SOUS-PANEL DISCIPLINAIRE : }
+	\anglaisFrancais{title:}{intitulé :} \todoinline{todo}
+	\anglaisFrancais{acronym:}{sigle :} \todoinline{todo}
+}
+\vspace{.5cm}
+
+
+{\noindent
+\def\arraystretch{1.5}%
+\begin{tabular}{@{} l c c}
+\anglaisFrancais{INTERDISCIPLINARY APPLICATION}{CANDIDATURE INTERDISCIPLINAIRE}&
+\boxunchecked{} \anglaisFrancais{YES}{OUI} &
+\boxunchecked{} \anglaisFrancais{NO}{NON} 
+\end{tabular}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{SECOND DISCIPLINARY SUB-PANEL (in the case of an interdisciplinary application): }{SECOND SOUS-PANEL DISCIPLINAIRE (dans le cas d’une candidature interdisciplinaire) : }
+	\anglaisFrancais{title:}{intitulé :} \todoinline{todo}
+	\anglaisFrancais{acronym:}{sigle :} \todoinline{todo}
+}
+
+\vspace{.5cm}
+
+{\noindent%
+	\anglaisFrancais{RESEARCH GROUP:}{UNITÉ DE RECHERCHE D’APPARTENANCE :}
+	\todoinline{todo}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Resarch project}{Project de recherche}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent\underline{\MakeUppercase{\anglaisFrancais{Title of the research project}{Titre du projet :}}}
+
+\bigskip
+
+\textbf{%
+\projectTitleEN{}
+% TODO: FR
+}
+
+% EOEAUU
+
+\bigskip
+\bigskip
+
+\noindent\underline{\MakeUppercase{\anglaisFrancais{Summary of the research project (maximum 500 characters):}{Résumé du projet de recherche (500 caractères maximum) :}}}
+
+\bigskip
+
+\todo{TODO}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Scientific activity and mobility}{Activité scientifique et mobilité}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent\underline{\MakeUppercase{\anglaisFrancais{Current scientific activity (maximum 500 characters):}{Activité scientifique actuelle (500 caractères maximum): }}}
+
+
+\todo{TODO}
+
+\bigskip
+\bigskip
+
+\noindent\underline{\MakeUppercase{\anglaisFrancais{Mobility across thematic areas (maximum 500 characters):}{Mobilité thématique (500 caractères maximum): }}}
+
+\bigskip
+
+
+\todo{TODO}
+
+\bigskip
+\bigskip
+
+\noindent\underline{\MakeUppercase{\anglaisFrancais{Geographic mobility (maximum 500 characters):}{Mobilité géographique (500 caractères maximum): }}}
+
+\bigskip
+
+\todo{TODO}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Publication record}{Production scientifique}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsNotice{%
+Nombre de publications scientifiques. \\
+Résumé des 5 publications scientifiques les plus significatives mentionnées dans la fiche de
+synthèse du dossier (4 pages maximum).}
+
+% NOTE (Étienne) : ajout de la distinction congrès/revues
+{\noindent%
+\def\arraystretch{4}%
+\begin{tabular}{| p{.38\textwidth} | p{.17\textwidth} | p{.17\textwidth} | p{.17\textwidth} |}
+	\hline
+	\rowcolor{IUFfondgristableau}\multicolumn{4}{|c}{\bfseries\textcolor{white}{\MakeUppercase{Publications}}}
+	\\
+	\hline
+	\rowcolor{IUFfondgristableau} & 
+\anglaisFrancais{\bfseries\textcolor{white}{\makecell{ENTIRE \\ CAREER}}}
+{\bfseries\textcolor{white}{\makecell{DEPUIS LE \\ DÉBUT DE \\ CARRIÈRE}}}
+	& 
+\anglaisFrancais{\bfseries\textcolor{white}{\makecell{LAST 10 \\ YEARS}}}
+{\bfseries\textcolor{white}{\makecell{DONT CES 10 \\ DERNIÈRES \\ ANNÉES}}}
+& 
+\anglaisFrancais{\bfseries\textcolor{white}{\makecell{LAST 5 \\ YEARS}}}
+{\bfseries\textcolor{white}{\makecell{DONT CES 5 \\ DERNIÈRES \\ ANNÉES}}}
+	\\
+
+	% TODO
+	\hline
+	\MakeUppercase{\anglaisFrancais{NUMBER OF ARTICLES IN PEER-REVIEWED JOURNALS}{NOMBRE DE PUBLICATIONS DANS DES REVUES À COMITÉ DE LECTURE}}  & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}}
+
+	\\
+
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of books}{Nombre d'ouvrages personnels}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}}
+	\\
+
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of chapters in edited books}{Nombre de participations à des ouvrages collectifs}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}}
+	\\
+
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of invited lectures}{Nombre de conférences invitées}} & \styleAnswer{TODO} & \styleAnswer{TODO} &\styleAnswer{TODO}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of patents under license*}{Nombre de brevets exploités*}} & \styleAnswer{TODO} & \styleAnswer{TODO} &\styleAnswer{TODO}
+	\\
+	\hline
+\end{tabular}
+
+}
+
+\anglaisFrancais{%
+*In case of patents, specify whether you are the holder or co-owner and in which field. Give
+the title, number and filing date of the patent.
+}{
+*En cas de brevet, précisez si vous êtes titulaire ou copropriétaire et dans quel
+domaine. Indiquez le titre, le numéro et la date de dépôt du brevet.
+}
+
+
+
+\bigskip
+
+
+\newcounter{compteurCinqPublications}
+
+{\noindent%
+\def\arraystretch{1.5}%
+\begin{longtable}{| p{.2\textwidth} | p{.75\textwidth} | }
+	\hline
+	\rowcolor{IUFtitlebackground}\multicolumn{2}{|c}{\bfseries\textcolor{white}{\MakeUppercase{\anglaisFrancais{The 5 most significant publications (max 4 pages)}{Détail des 5 publications les plus significatives (4 pges maximum)}}}}
+	\\
+
+	% PUBLICATION
+	\hline
+	\rowcolor{IUFfondgristableaupublis}
+	\stepcounter{compteurCinqPublications}%
+	\bfseries\MakeUppercase{\anglaisFrancais{Title}{Titre}} & \bfseries{\arabic{compteurCinqPublications}. \styleAnswer{\todoinline{todo}}} \\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Reference}{Référence}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Summary}{Résumé}} &
+		\styleAnswer{\todoinline{todo}}
+	\\
+
+	% PUBLICATION
+	\hline
+	\rowcolor{IUFfondgristableaupublis}
+	\stepcounter{compteurCinqPublications}%
+	\bfseries\MakeUppercase{\anglaisFrancais{Title}{Titre}} & \bfseries{\arabic{compteurCinqPublications}. \styleAnswer{\todoinline{todo}}} \\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Reference}{Référence}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Summary}{Résumé}} &
+		\styleAnswer{\todoinline{todo}}
+	\\
+
+	% PUBLICATION
+	\hline
+	\rowcolor{IUFfondgristableaupublis}
+	\stepcounter{compteurCinqPublications}%
+	\bfseries\MakeUppercase{\anglaisFrancais{Title}{Titre}} & \bfseries{\arabic{compteurCinqPublications}. \styleAnswer{\todoinline{todo}}} \\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Reference}{Référence}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Summary}{Résumé}} &
+		\styleAnswer{\todoinline{todo}}
+	\\
+
+	% PUBLICATION
+	\hline
+	\rowcolor{IUFfondgristableaupublis}
+	\stepcounter{compteurCinqPublications}%
+	\bfseries\MakeUppercase{\anglaisFrancais{Title}{Titre}} & \bfseries{\arabic{compteurCinqPublications}. \styleAnswer{\todoinline{todo}}} \\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Reference}{Référence}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Summary}{Résumé}} &
+		\styleAnswer{\todoinline{todo}}
+	\\
+
+	% PUBLICATION
+	\hline
+	\rowcolor{IUFfondgristableaupublis}
+	\stepcounter{compteurCinqPublications}%
+	\bfseries\MakeUppercase{\anglaisFrancais{Title}{Titre}} & \bfseries{\arabic{compteurCinqPublications}. \styleAnswer{\todoinline{todo}}} \\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Reference}{Référence}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Summary}{Résumé}} &
+		\styleAnswer{\todoinline{todo}}
+	\\
+
+
+
+
+	% FINAL LINE
+	\hline
+\end{longtable}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{PhD supervision}{Encadrement doctoral}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\noindent%
+\def\arraystretch{2}%
+\begin{tabular}{| p{.4\textwidth} | p{.25\textwidth} | p{.25\textwidth} |}
+	\hline
+	\rowcolor{IUFtitlebackground}\textbf{\textcolor{white}{\MakeUppercase{\anglaisFrancais{PhD supervision}{Direction de thèses}}}} & \textbf{\textcolor{white}{\MakeUppercase{\anglaisFrancais{Entire career}{Depuis le début de carrière}}}} & \textbf{\textcolor{white}{\MakeUppercase{\anglaisFrancais{Last 5 years}{Dont ces 5 dernières années}}}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of supervised theses (completed)}{Nombre de thèses soutenues}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Number of supervised ongoing theses}{Nombre de thèses en cours}} & \styleAnswer{\todoinline{todo}} & \styleAnswer{\todoinline{todo}}
+	\\
+	\hline
+\end{tabular}
+
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Curriculum Vit\ae{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{$\rightarrow$ \anglaisFrancais{Maximum 3 pages}{3 pages maximum}}}
+
+\instructionsNotice{
+\begin{itemize}
+\item Doivent obligatoirement figurer en tête : le nom patronymique, le prénom, la date
+de naissance, la situation professionnelle (grade, établissement d’affectation,
+unité de recherche d’appartenance) ;
+
+\item Préconisations pour le contenu, dans la limite du volume imparti :
+
+\begin{itemize}
+\item informations significatives sur la formation, les diplômes et le déroulement de la
+carrière ;
+\item rayonnement national et international (prix et distinctions scientifiques, comités de
+rédaction, conseils scientifiques, invitations d’EPST étrangères, commissions
+nationales et internationales …) ;
+\item animation scientifique (direction d’un laboratoire, d’une équipe, d’un groupement
+de recherche, d’une formation doctorale, en indiquant pour chaque responsabilité
+l’objet, l’importance de la composante, les dates d’exercice) ;
+\end{itemize}
+
+\end{itemize}}
+
+
+
+\styleAnswer{\todoinline{todo}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Personal bibliography}{Liste des travaux et des publications}}\label{section-mes-publis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{$\rightarrow$ \anglaisFrancais{Comprehensive list}{Liste complète}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{IUF research project 2027-2032}{Projet de recherche IUF 2027-2032}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{$\rightarrow$ \anglaisFrancais{Maximum 8 pages}{8 pages maximum}}}
+
+\vspace{.5cm}
+
+\instructions{
+\noindent%
+\anglaisFrancais{%
+The candidate will insert, in the application form, as a preamble to his/her project, a \textbf{statement regarding the use of an artificial intelligence tool} (cf. recommandations in the Application guidelines)
+}{%
+En préambule du projet, la candidate ou le candidat insèrera une \textbf{Déclaration relative à l’usage d’outils d’intelligence artificielle (cf. Notice)}
+}
+}
+
+
+\instructionsNotice{
+ 	Merci de respecter cette consigne, dépasser cette limite pourrait être contre-productif pour votre évaluation. Dela même manière les annexes ne sont pas autorisées.
+}
+
+\instructionsNotice{Le projet de recherche doit comprendre :
+
+\begin{itemize}
+\item une déclaration relative à l’usage d’outils d’intelligence artificielle ;
+\item une description de l’état de l’art et des objectifs poursuivis ;
+\item la programmation prévisionnelle.
+\end{itemize}
+
+Il distinguera la part du ou de la candidat(e) et celle de son équipe dans la réalisation du
+projet.
+
+La déclaration relative à l’usage d’outils d’IA, quant à elle, doit préciser les outils utilisés pour
+sa préparation ainsi que la nature de leur contribution :
+\begin{itemize}
+\item recherche documentaire et bibliographique ;
+\item synthèse ou analyse de la littérature ;
+\item assistance à la rédaction, à la reformulation, à la traduction ou à la mise en forme ;
+assistance méthodologique ou technique (programmation, analyses, simulations,
+\item traitement de données, etc.) ;
+\item structuration du projet ou exploration de pistes de recherche (identification des
+\item questions de recherche, construction des hypothèses, définition de la méthodologie) ;
+\item toute autre contribution significative à l'élaboration du projet ;
+\end{itemize}
+en distinguant ce qui relève d'une assistance à la présentation du projet de ce qui a
+contribué à son contenu scientifique.
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{
+\anglaisFrancais{POSSIBLE OPENING OF IUF PROJECT TOWARDS AN EUROPEAN PROJECT (ERC OR OTHER) DURING OR UPON THE DELEGATION 
+(OPTIONAL)}{OUVERTURE POSSIBLE DU PROJET IUF VERS UN PROJET COMPÉTITIF EUROPÉEN OU INTERNATIONAL (ERC OU AUTRE) AU COURS OU À L’ISSUE DE LA DÉLÉGATION}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{$\rightarrow$ \anglaisFrancais{Maximum 2 pages}{2 pages maximum}} (cf.\ \anglaisFrancais{recommendations mentioned in the Application guidelines}{Notice})}
+
+\instructionsNotice{
+\begin{enumerate}
+\item Cas des projets ERC
+
+Le ou la candidat(e) doit consulter le site de l’ERC (\url{https://erc.europa.eu}) et imaginer, dans
+les grandes lignes, un projet résumé qui réponde aux exigences d’originalité et d’innovation
+de l’ERC. Ce projet devra correspondre à une catégorie ERC selon le profil du ou de la
+candidat(e) et l’objectif ciblé (Starting grant, Consolidator grant, Advanced grant, Proof of
+concept, Synergy grant).
+
+Le ou la candidat(e) expliquera en quoi le projet envisagé aurait l’envergure d’un projet ERC.
+
+\item Cas des autres projets européens
+
+Le ou la candidat(e) devra spécifier le type de projet européen envisagé, en rappeler
+brièvement les spécificités et imaginer, dans les grandes lignes, un projet résumé qui
+réponde aux exigences d’originalité et d’innovation propres à ce type de projet.
+
+\item Dans les deux cas
+
+Le ou la candidat(e) présentera notamment (i) les enjeux, (ii) les grandes lignes de la
+méthodologie envisagée, (iii) les moyens scientifiques et technologiques nécessaires à la
+mise en place de ce projet, (iv) le lien entre le potentiel projet européen et le projet IUF
+déposé et expliquera (v) dans quelle mesure une délégation IUF lui permettrait de mettre en
+place son projet ERC.
+
+Si le ou la candidat(e) a déjà une candidature à un projet européen en cours
+d’évaluation, il ou elle peut utiliser les informations du résumé du projet soumis.
+
+S’il ou elle a déjà été lauréat(e), il ou elle indiquera l’année, le type de projet et un
+bref résumé des travaux effectués ou en cours.
+
+Si le ou la candidat(e) pense avoir identifié des raisons spécifiques pour lesquelles il
+ou elle ne souhaite pas déposer de projet ERC, il ou elle peut les indiquer.
+\end{enumerate}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{Description of teaching activities, educational and administrative responsibilities (maximum 2 pages)}{Description des activités d'enseignement et des responsabilités pédagogiques et administratives (2 pages maximum)}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructionsNotice{
+\begin{itemize}
+	\item Des activités d’enseignement dans l’établissement d’appartenance (nombre annuel
+d’heures en équivalent TD, matière, niveau), dans d’autres établissements et à
+l’étranger ;
+	\item Des responsabilités pédagogiques et administratives exercées au cours des cinq
+dernières années.
+
+\end{itemize}
+}
+
+\subsection*{\anglaisFrancais{Teaching activities during the last 5 years}{Activité d'enseignement des 5 dernières années}}
+
+
+%\vspace{.5cm}
+
+\anglaisFrancais{In France :}{En France :}
+
+\begin{itemize}
+\item \anglaisFrancais{Home institution (number of teaching hours – calculated as equivalent to 1 hour of practical tutorials)}
+{Dans l’établissement d’appartenance (nature et volume en heures équivalent TD)}
+
+\todo{TODO}
+
+\item \anglaisFrancais{In other institutions}{Dans d’autres établissements}
+
+\todo{TODO}
+
+\item \anglaisFrancais{In other countries}{À l’étranger :}
+
+\todo{TODO}
+\end{itemize}
+
+\subsection*{\anglaisFrancais{Educational and administrative responsibilities during the last 5 years}{Responsabilités pédagogiques et administratives au cours des 5 dernières années}}
+
+\todo{TODO}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{POSSIBLE OPENING OF IUF PROJECT TO INNOVATION AND/OR SCIENTIFIC MEDIATION ACTIVITIES }{ACTIVITES D’INNOVATION ET/OU DE MEDIATION SCIENTIFIQUE}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\instructions{\textbf{$\rightarrow$ \anglaisFrancais{Maximum 1 page}{1 page maximum}} (cf.\ \anglaisFrancais{recommendations mentioned in the Application guidelines}{Notice})}
+
+\instructionsNotice{%
+    Attention le titre est très différent en anglais et en français, bien lire la notice
+    
+	Le ou la candidat(e) peut indiquer ici les développements éventuels de son projet en termes
+d’innovation pédagogique, en termes de transferts des travaux de sa recherche vers le
+monde de l’entreprise ou la sphère publique, ou en termes de médiation scientifique.
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{List of 3 French (1) of foreign (2) scientific experts who might be contacted by the jury}{Liste de 3 personnalités scientifiques française (1) et étrangères (2) susceptibles d'être consultées par le jury}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\instructionsNotice{Liste de trois personnalités scientifiques françaises et étrangères compétentes dans le
+domaine (mais sans intérêts communs avec le ou la candidat(e), susceptibles d’être
+consultées par le jury (nom, prénom, qualité, adresse, courrier électronique).
+
+Ces trois personnalités doivent être différentes des deux recommandants et deux d’entre
+elles, au minimum, doivent être de nationalité étrangère.}
+
+{\noindent%
+\def\arraystretch{1.5}%
+\begin{tabular}{l l}
+	% BEGIN EXPERT
+	\MakeUppercase{\anglaisFrancais{Last name}{Nom}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{First name}{Prénom}}: \styleAnswer{TODO}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{Position}{Fonction}}:  \styleAnswer{TODO}}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{University affiliation}{UNIVERSITÉ OU ÉTABLISSEMENT D’APPARTENANCE }}: \styleAnswer{TODO}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Phone}{Téléphone}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{E-mail}{Courriel}}: \styleAnswer{\nolinkurl{TODO@TODO}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Last name}{Nom}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{First name}{Prénom}}: \styleAnswer{TODO}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{Position}{Fonction}}:  \styleAnswer{TODO}}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{University affiliation}{UNIVERSITÉ OU ÉTABLISSEMENT D’APPARTENANCE }}: \styleAnswer{TODO}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Phone}{Téléphone}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{E-mail}{Courriel}}: \styleAnswer{\nolinkurl{TODO@TODO}}
+	\\
+	\hline
+	\MakeUppercase{\anglaisFrancais{Last name}{Nom}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{First name}{Prénom}}: \styleAnswer{TODO}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{Position}{Fonction}}:  \styleAnswer{TODO}}
+	\\
+	\multicolumn{2}{l}{\MakeUppercase{\anglaisFrancais{University affiliation}{UNIVERSITÉ OU ÉTABLISSEMENT D’APPARTENANCE }}: \styleAnswer{TODO}}
+	\\
+	\MakeUppercase{\anglaisFrancais{Phone}{Téléphone}}: \styleAnswer{TODO} & \MakeUppercase{\anglaisFrancais{E-mail}{Courriel}}: \styleAnswer{\nolinkurl{TODO@TODO}}
+	\\
+% 	\hline
+\end{tabular}
+}
+
+
+\pagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{\anglaisFrancais{For candidates for a new IUF delegation}{Pour les candidat(e)s à une nouvelle délégation IUF}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent{}\textbf{$\rightarrow$ \MakeUppercase{\anglaisFrancais{INCLUDE IN THIS FILE THE ACTIVITY REPORT OF THE PREVIOUS DELEGATION}{JOINDRE DANS CE DOSSIER LE RAPPORT D’ACTIVITÉ DE LA DÉLÉGATION ANTÉRIEURE}}}
+
+
+\bigskip
+
+\noindent{}\textbf{$\rightarrow$ \MakeUppercase{\anglaisFrancais{FINANCIAL ANNEX: SUMMARY OF THE USE OF IUF FUNDS OVER THE DELEGATION PERIOD, TO BE INCLUDED IN THIS FILE}{ANNEXE FINANCIÈRE : COMPTE-RENDU D’UTILISATION DES CRÉDITS IUF SUR LA PÉRIODE DE DÉLÉGATION À INTÉGRER DANS CE DOSSIER}}}
+
+\bigskip
+
+\noindent{}\textbf{$\rightarrow$ \MakeUppercase{\anglaisFrancais{LISTING OF APPLICATIONS TO A EUROPEAN OR INTERNATIONAL COMPETITIVE CALLS FOR PROJECTS (EUROPEAN RESEARCH COUNCIL AND OTHERS)}{ETAT DES CANDIDATURES À DES APPELS À DES PROJETS COMPÉTITIFS EUROPÉENS OU INTERNATIONAUX (ERC ET AUTRES)}}}
+
+\bigskip
+
+\noindent{}\textbf{$\rightarrow$ \MakeUppercase{\anglaisFrancais{IF SUITABLE, THE EVALUATION REPORT CORRESPONDING TO THE LAST APPLICATION FOR A EUROPEAN OR INTERNATIONAL COMPETITIVE CALL FOR PROJECTS}{LE CAS ECHÉANT, LE RAPPORT D’EVALUATION CORRESPONDANT À LA DERNIÈRE CANDIDATURE À UN APPEL À PROJETS COMPÉTITIF EUROPÉEN OU INTERNATIONAL.}}}
+
+
+
+
+
+
+
+
+
+\vspace{3cm}
+{\tiny \hfill{}\textcolor{black!20}{Version: \today{}}}
+
+
+\end{document}
